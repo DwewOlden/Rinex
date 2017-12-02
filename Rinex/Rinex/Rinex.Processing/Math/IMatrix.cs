@@ -14,14 +14,6 @@ namespace Rinex.Processing.Math
 
         bool IsSquare { get; }
 
-        Matrix Transpose(Matrix pMatrix);
-
-        Matrix MultiplyMatrix(Matrix pMatrix, Matrix pMatrix2);
-
         Matrix CholeskiInverse(Matrix pMatrix);
-
-        Matrix Add(Matrix source, Matrix target);
-
-        Matrix Subtract(Matrix source, Matrix target);
     }
 }

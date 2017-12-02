@@ -69,12 +69,12 @@ namespace Rinex.Processing.Math
             mData = new double[Rows, Columns];
         }
 
-        public Matrix Transpose(Matrix pMatrix)
+        public static Matrix Transpose(Matrix pMatrix)
         {
             throw new NotImplementedException();
         }
 
-        public Matrix MultiplyMatrix(Matrix pMatrix, Matrix pMatrix2)
+        public static Matrix MultiplyMatrix(Matrix pMatrix, Matrix pMatrix2)
         {
             throw new NotImplementedException();
         }
@@ -84,12 +84,12 @@ namespace Rinex.Processing.Math
             throw new NotImplementedException();
         }
 
-        public Matrix Add(Matrix source, Matrix target)
+        public static Matrix Add(Matrix source, Matrix target)
         {
             throw new NotImplementedException();
         }
 
-        public Matrix Subtract(Matrix source, Matrix target)
+        public static Matrix Subtract(Matrix source, Matrix target)
         {
             throw new NotImplementedException();
         }
