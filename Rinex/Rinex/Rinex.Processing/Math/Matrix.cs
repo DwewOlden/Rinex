@@ -68,5 +68,30 @@ namespace Rinex.Processing.Math
 
             mData = new double[Rows, Columns];
         }
+
+        public Matrix Transpose(Matrix pMatrix)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Matrix MultiplyMatrix(Matrix pMatrix, Matrix pMatrix2)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Matrix CholeskiInverse(Matrix pMatrix)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Matrix Add(Matrix source, Matrix target)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Matrix Subtract(Matrix source, Matrix target)
+        {
+            throw new NotImplementedException();
+        }
     }
 }
