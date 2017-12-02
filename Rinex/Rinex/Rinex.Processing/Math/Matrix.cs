@@ -69,11 +69,22 @@ namespace Rinex.Processing.Math
             mData = new double[Rows, Columns];
         }
 
+        /// <summary>
+        /// Flips a matrix over its diagonal
+        /// </summary>
+        /// <param name="pMatrix">The matrix we want to transpose</param>
+        /// <returns>The transposed matrix</returns>
         public static Matrix Transpose(Matrix pMatrix)
         {
             throw new NotImplementedException();
         }
 
+        /// <summary>
+        /// Multiplys the two matrix
+        /// </summary>
+        /// <param name="pMatrix">The left hand side of the marix</param>
+        /// <param name="pMatrix2">The right hand side of the matrix</param>
+        /// <returns>The result of the matrix multiplation operation</returns>
         public static Matrix MultiplyMatrix(Matrix pMatrix, Matrix pMatrix2)
         {
             throw new NotImplementedException();
@@ -84,14 +95,48 @@ namespace Rinex.Processing.Math
             throw new NotImplementedException();
         }
 
+        /// <summary>
+        /// Adds the passed two matrix
+        /// </summary>
+        /// <param name="source">The left hand side of the addition</param>
+        /// <param name="target">The right hand side of the addition</param>
+        /// <returns>The result of the addtion</returns>
         public static Matrix Add(Matrix source, Matrix target)
         {
             throw new NotImplementedException();
         }
 
+        /// <summary>
+        /// Subtracts the source matrix from the target matrix
+        /// </summary>
+        /// <param name="source">The left hand side of the subtraction</param>
+        /// <param name="target">The righ hand side of the subtraction</param>
+        /// <returns>The result of the subtraction</returns>
         public static Matrix Subtract(Matrix source, Matrix target)
         {
             throw new NotImplementedException();
+        }
+
+        /// <summary>
+        /// Returns the value in the passed row and column
+        /// </summary>
+        /// <param name="Row">The row containing the value we want to set</param>
+        /// <param name="Col">The col containing the value we want to set</param>
+        /// <returns>The value we want to get</returns>
+        public double GetValue(int Row, int Col)
+        {
+            return mData[Row, Col];
+        }
+
+        /// <summary>
+        /// Sets the row and column with the passed value
+        /// </summary>
+        /// <param name="Row">The row containing the value we want to set</param>
+        /// <param name="Col">The col containing the value we want to set</param>
+        /// <param name="Value">The value we want to set</param>
+        public void SetValue(int Row, int Col, double Value)
+        {
+            mData[Row, Col] = Value;
         }
     }
 }
