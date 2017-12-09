@@ -88,6 +88,33 @@ namespace Rinex.Tests
                 }
         }
 
+        [Test]
+        public void Matrix_Multiplication_1()
+        {
+            Matrix m1 = new Matrix(3, 3);
+            Matrix m2 = new Matrix(3, 3);
+
+            for (int i = 0;i<3;i++)
+                for (int j = 0;j<3;j++)
+                {
+                    m1.SetValue(i, j, i + 1);
+                    m2.SetValue(i, j, i + 1);
+                }
+
+            Matrix m3 = Matrix.MultiplyMatrix(m1, m2);
+
+            Assert.AreEqual(6, m3.GetValue(0, 0));
+            Assert.AreEqual(6, m3.GetValue(0, 1));
+            Assert.AreEqual(6, m3.GetValue(0, 2));
+            Assert.AreEqual(12, m3.GetValue(1, 0));
+            Assert.AreEqual(12, m3.GetValue(1, 1));
+            Assert.AreEqual(12, m3.GetValue(1, 2));
+            Assert.AreEqual(18, m3.GetValue(2, 0));
+            Assert.AreEqual(18, m3.GetValue(2, 1));
+            Assert.AreEqual(18, m3.GetValue(2, 2));
+
+        }
+
 
     }
 }

@@ -87,9 +87,23 @@ namespace Rinex.Processing.Math
         /// <param name="pMatrix">The left hand side of the marix</param>
         /// <param name="pMatrix2">The right hand side of the matrix</param>
         /// <returns>The result of the matrix multiplation operation</returns>
-        public static Matrix MultiplyMatrix(Matrix pMatrix, Matrix pMatrix2)
+        public static Matrix MultiplyMatrix(Matrix source, Matrix target)
         {
-            throw new NotImplementedException();
+            if ((source.Columns != target.Columns) || (source.Rows != target.Rows))
+                throw new ArgumentException("the matrix are not the same dimensions");
+
+            Matrix m = new Matrix(source.Rows, target.Columns);
+
+            for (int i =0;i<source.Columns;i++)
+                for (int j=0;j<target.Rows;j++)
+                    for (int k = 0;k<source.Columns;k++)
+                    {
+                        double d = m.GetValue(i, j);
+                        d = d + (source.GetValue(i, k) * target.GetValue(k, j));
+                        m.SetValue(i, j, d);
+                    }
+
+            return m;
         }
 
         public Matrix CholeskiInverse(Matrix pMatrix)
