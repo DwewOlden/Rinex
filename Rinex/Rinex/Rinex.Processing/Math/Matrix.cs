@@ -67,6 +67,8 @@ namespace Rinex.Processing.Math
                 throw new ArgumentOutOfRangeException("rows / columns", "the number of rows and columns must both be greater than zero");
 
             mData = new double[Rows, Columns];
+            mRows = Rows;
+            mCols = Columns;
         }
 
         /// <summary>
@@ -103,7 +105,22 @@ namespace Rinex.Processing.Math
         /// <returns>The result of the addtion</returns>
         public static Matrix Add(Matrix source, Matrix target)
         {
-            throw new NotImplementedException();
+            // Check the dimensions of the matrix
+            if ((source.Columns != target.Columns) || (source.Rows != target.Rows))
+                throw new ArgumentException("the matrix are not the same dimensions");
+
+            // Create a new matrix of the required size
+            Matrix m = new Matrix(source.Rows, source.Columns);
+            
+            // Generate a new matrix based on the two passed arrays.
+            for (int i = 0;i<source.Rows;i++)
+                for (int j=0;j<source.Columns;j++)
+                {
+                    double value = source.GetValue(i, j) + target.GetValue(i, j);
+                    m.SetValue(i, j, value);
+                }
+
+            return m;
         }
 
         /// <summary>
@@ -114,7 +131,22 @@ namespace Rinex.Processing.Math
         /// <returns>The result of the subtraction</returns>
         public static Matrix Subtract(Matrix source, Matrix target)
         {
-            throw new NotImplementedException();
+            // Check the dimensions of the matrix
+            if ((source.Columns != target.Columns) || (source.Rows != target.Rows))
+                throw new ArgumentException("the matrix are not the same dimensions");
+
+            // Create a new matrix of the required size
+            Matrix m = new Matrix(source.Rows, source.Columns);
+
+            // Generate a new matrix based on the two passed arrays.
+            for (int i = 0; i < source.Rows; i++)
+                for (int j = 0; j < source.Columns; j++)
+                {
+                    double value = source.GetValue(i, j) - target.GetValue(i, j);
+                    m.SetValue(i, j, value);
+                }
+
+            return m;
         }
 
         /// <summary>
