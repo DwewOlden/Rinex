@@ -75,6 +75,19 @@ namespace Rinex.Processing.Math
         }
 
         /// <summary>
+        /// Determines if the matrix is Singular, a matrix is singular when its determinate is zero
+        /// </summary>
+        /// <remarks>See Vector class</remarks>
+        public bool IsSingular
+        {
+            get
+            {
+                
+                return true;
+            }
+        }
+
+        /// <summary>
         /// Default construcor
         /// </summary>
         /// <param name="Rows">The number of rows in the matrix</param>

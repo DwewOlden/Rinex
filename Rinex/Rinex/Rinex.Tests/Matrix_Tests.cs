@@ -12,6 +12,21 @@ namespace Rinex.Tests
     public class Matrix_Tests
     {
         [Test]
+        public void Matrix_IsZero_True_Test()
+        {
+            Matrix m = new Matrix(4, 4);
+            Assert.AreEqual(true, m.IsZero);
+        }
+
+        [Test]
+        public void Matrix_IsZero_False_Test()
+        {
+            Matrix m = new Matrix(4, 4);
+            m.SetValue(0, 0, 1);
+            Assert.AreEqual(false, m.IsZero);
+        }
+
+        [Test]
         public void Matrix_Test_Addition_1()
         {
             Matrix m1 = Matrix_Test_Data.Get_Uniform_Matrix_Test_Data(10, 10, 10);

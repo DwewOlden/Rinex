@@ -16,6 +16,8 @@ namespace Rinex.Processing.Math
 
         bool IsZero { get; }
 
+        bool IsSingular { get; }
+
         Matrix CholeskiInverse();
 
         double GetValue(int Row, int Col);
