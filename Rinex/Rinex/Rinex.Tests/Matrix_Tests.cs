@@ -175,8 +175,39 @@ namespace Rinex.Tests
             Assert.AreEqual(26, m3.GetValue(0, 0));
             Assert.AreEqual(24, m3.GetValue(0, 1));
             Assert.AreEqual(36, m3.GetValue(1, 0));
-            Assert.AreEqual(34, m3.GetValue(1, 1));
-            
+            Assert.AreEqual(34, m3.GetValue(1, 1));   
+        }
+
+        [Test]
+        public void Matrix_Transpose_1()
+        {
+            Matrix m1 = Matrix_Test_Data.Get_Multiplication_Matrix4();
+            Matrix m2 = m1.Transpose();
+
+            Assert.AreEqual(2,m2.GetValue(0, 0));
+            Assert.AreEqual(3,m2.GetValue(0, 1));
+            Assert.AreEqual(2, m2.GetValue(0, 2));
+            Assert.AreEqual(3, m2.GetValue(0, 3));
+            Assert.AreEqual(3, m2.GetValue(1, 0));
+            Assert.AreEqual(2, m2.GetValue(1, 1));
+            Assert.AreEqual(3, m2.GetValue(1, 2));
+            Assert.AreEqual(2, m2.GetValue(1, 3));
+        }
+
+        [Test]
+        public void Matrix_Transpose_2()
+        {
+            Matrix m1 = Matrix_Test_Data.Get_Multiplication_Matrix3();
+            Matrix m2 = m1.Transpose();
+
+            Assert.AreEqual(1, m2.GetValue(0, 0));
+            Assert.AreEqual(2, m2.GetValue(0, 1));
+            Assert.AreEqual(2, m2.GetValue(1, 0));
+            Assert.AreEqual(3, m2.GetValue(1, 1));
+            Assert.AreEqual(3, m2.GetValue(2, 0));
+            Assert.AreEqual(4, m2.GetValue(2, 1));
+            Assert.AreEqual(4, m2.GetValue(3, 0));
+            Assert.AreEqual(5, m2.GetValue(3, 1));
         }
     }
 }

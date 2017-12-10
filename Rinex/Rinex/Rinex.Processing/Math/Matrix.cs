@@ -61,7 +61,7 @@ namespace Rinex.Processing.Math
         /// </summary>
         /// <param name="Rows">The number of rows in the matrix</param>
         /// <param name="Columns">The number of columns in the matrix</param>
-        public Matrix(int Columns,int Rows)
+        public Matrix(int Columns, int Rows)
         {
             if (Rows < 1 || Columns < 1)
                 throw new ArgumentOutOfRangeException("rows / columns", "the number of rows and columns must both be greater than zero");
@@ -74,11 +74,20 @@ namespace Rinex.Processing.Math
         /// <summary>
         /// Flips a matrix over its diagonal
         /// </summary>
-        /// <param name="pMatrix">The matrix we want to transpose</param>
         /// <returns>The transposed matrix</returns>
-        public static Matrix Transpose(Matrix pMatrix)
+        public Matrix Transpose()
         {
-            throw new NotImplementedException();
+            // Create a new matrix
+            Matrix m = new Matrix(this.Rows, this.Columns);
+
+            for (int i = 0; i < this.Rows; i++)
+                for (int j = 0; j < this.Columns; j++)
+                {
+                    double d = this.GetValue(i, j);
+                    m.SetValue(j, i, d);
+                }
+
+            return m;
         }
 
         /// <summary>
@@ -98,10 +107,10 @@ namespace Rinex.Processing.Math
                     for (int k = 0; k < source.Columns; k++)
                     {
                         double d = m.GetValue(i, j);
-                        d += source.GetValue(i,k) * target.GetValue(k,j);
-                        m.SetValue(i, j, d); 
+                        d += source.GetValue(i, k) * target.GetValue(k, j);
+                        m.SetValue(i, j, d);
                     }
-                
+
             return m;
         }
 
@@ -124,10 +133,10 @@ namespace Rinex.Processing.Math
 
             // Create a new matrix of the required size
             Matrix m = new Matrix(source.Rows, source.Columns);
-            
+
             // Generate a new matrix based on the two passed arrays.
-            for (int i = 0;i<source.Rows;i++)
-                for (int j=0;j<source.Columns;j++)
+            for (int i = 0; i < source.Rows; i++)
+                for (int j = 0; j < source.Columns; j++)
                 {
                     double value = source.GetValue(i, j) + target.GetValue(i, j);
                     m.SetValue(i, j, value);

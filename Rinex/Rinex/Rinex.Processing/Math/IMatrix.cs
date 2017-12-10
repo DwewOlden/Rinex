@@ -19,5 +19,7 @@ namespace Rinex.Processing.Math
         double GetValue(int Row, int Col);
 
         void SetValue(int Row, int Col,double Value);
+
+        Matrix Transpose();
     }
 }
