@@ -14,6 +14,8 @@ namespace Rinex.Processing.Math
 
         bool IsSquare { get; }
 
+        bool IsZero { get; }
+
         Matrix CholeskiInverse();
 
         double GetValue(int Row, int Col);

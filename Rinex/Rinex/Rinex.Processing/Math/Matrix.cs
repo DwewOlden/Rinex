@@ -56,6 +56,24 @@ namespace Rinex.Processing.Math
             }
         }
 
+
+        /// <summary>
+        /// Checks if all the elements in the matrix are zero
+        /// </summary>
+        /// <returns>True if all elements are zero, false if they are not</returns>
+        public bool IsZero
+        {
+            get
+            {
+                for (int i = 0; i < this.Rows; i++)
+                    for (int j = 0; j < this.Columns; j++)
+                        if (this.GetValue(i, j) != 0)
+                            return false;
+
+                return true;
+            }
+        }
+
         /// <summary>
         /// Default construcor
         /// </summary>
