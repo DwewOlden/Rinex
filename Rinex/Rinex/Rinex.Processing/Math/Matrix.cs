@@ -114,10 +114,120 @@ namespace Rinex.Processing.Math
             return m;
         }
 
-        public Matrix CholeskiInverse(Matrix pMatrix)
+        public Matrix CholeskiInverse()
         {
-            throw new NotImplementedException();
+            double[,] m = new double[this.mRows, this.mCols];
+            for (int i = 0; i < this.Rows; i++)
+                for (int j = 0; j < this.Columns; j++)
+                    m[i, j] = this.GetValue(i, j);
+
+            if (!CInverse(ref m))
+                return null;
+            else
+            {
+                Matrix m2 = new Matrix(this.mCols, this.mRows);
+                for (int i = 0; i < this.Rows; i++)
+                    for (int j = 0; j < this.Columns; j++)
+                        m2.SetValue(i, j, m[i, j]);
+
+                return m2;
+            }
         }
+
+        private bool CInverse(ref double[,] pMatrix)
+        {
+            if ((pMatrix.GetUpperBound(0) != pMatrix.GetUpperBound(1)) || (pMatrix.GetUpperBound(0) < 2))                   // must be square
+            {
+                return false;
+            }
+
+            const double singular = 1.0E-13;
+            double det, sum, dp;
+            int i, j, k;
+
+            det = pMatrix[0, 0];
+            pMatrix[0, 0] = System.Math.Sqrt(pMatrix[0, 0]);
+
+            for (i = 1; i < pMatrix.GetUpperBound(0) + 1; i++)
+            {
+                pMatrix[i, 0] = pMatrix[i, 0] / pMatrix[0, 0];
+            }
+
+            for (i = 1; i < pMatrix.GetUpperBound(0) + 1; i++)
+            {
+                sum = 0.0;
+                for (j = 0; j <= (i - 1); j++)
+                {
+                    sum += (pMatrix[i, j] * pMatrix[i, j]);
+                }
+
+                dp = pMatrix[i, i] - sum;
+
+                if ((det * dp) > 1.0E300)
+                {
+                    det = 1.0E300;
+                }
+                else
+                {
+                    det *= dp;
+                }
+
+                if ((dp < singular) || (System.Math.Abs(det) < singular))
+                {
+                    return false;
+                }
+
+                pMatrix[i, i] = System.Math.Sqrt(dp);
+
+                if (i < (pMatrix.GetUpperBound(0)))
+                {
+                    for (j = (i + 1); j < pMatrix.GetUpperBound(1) + 1; j++)
+                    {
+                        sum = 0.0;
+                        for (k = 0; k <= (i - 1); k++)
+                        {
+                            sum += pMatrix[j, k] * pMatrix[i, k];
+                        }
+                        pMatrix[j, i] = (pMatrix[j, i] - sum) / pMatrix[i, i];
+                    }
+                }
+            }
+
+            for (i = 0; i < pMatrix.GetUpperBound(0) + 1; i++)
+            {
+                pMatrix[i, i] = 1.0 / pMatrix[i, i];
+            }
+
+            for (i = 0; i < (pMatrix.GetUpperBound(0)); i++)
+            {
+                for (j = i + 1; j < pMatrix.GetUpperBound(0) + 1; j++)
+                {
+                    sum = 0.0;
+                    for (k = i; k <= (j - 1); k++)
+                    {
+                        sum += pMatrix[j, k] * pMatrix[k, i];
+                    }
+                    pMatrix[j, i] = -(pMatrix[j, j] * sum);
+                }
+            }
+
+            for (i = 0; i < pMatrix.GetUpperBound(0) + 1; i++)
+            {
+                if (i != 0)
+                    for (j = 0; j <= (i - 1); j++)
+                        pMatrix[j, i] = pMatrix[i, j];
+                for (j = i; j < pMatrix.GetUpperBound(0) + 1; j++)
+                {
+                    sum = 0.0;
+                    for (k = j; k < pMatrix.GetUpperBound(0) + 1; k++)
+                        sum += pMatrix[k, j] * pMatrix[k, i];
+                    pMatrix[j, i] = sum;
+                }
+            }
+
+            return true;
+        }
+
 
         /// <summary>
         /// Adds the passed two matrix

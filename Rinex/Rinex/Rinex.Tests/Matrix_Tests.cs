@@ -209,5 +209,25 @@ namespace Rinex.Tests
             Assert.AreEqual(4, m2.GetValue(3, 0));
             Assert.AreEqual(5, m2.GetValue(3, 1));
         }
+
+        [Test]
+        public void Matrix_CholeskiInverse_Test_1()
+        {
+           
+            Matrix m = Matrix_Test_Data.Get_Inverse_Matrix_1();
+            Matrix m2 = m.CholeskiInverse();
+
+            Assert.AreEqual(3.3333333333333339, m2.GetValue(0, 0));
+            Assert.AreEqual(-1.6666666666666670, m2.GetValue(0, 1));
+            Assert.AreEqual(0.66666666666666685, m2.GetValue(0, 2));
+
+            Assert.AreEqual(-1.6666666666666670, m2.GetValue(1, 0));
+            Assert.AreEqual(1.3333333333333335, m2.GetValue(1, 1));
+            Assert.AreEqual(-0.33333333333333343, m2.GetValue(1, 2));
+
+            Assert.AreEqual(0.66666666666666685, m2.GetValue(2, 0));
+            Assert.AreEqual(-0.33333333333333343, m2.GetValue(2, 1));
+            Assert.AreEqual(0.33333333333333343, m2.GetValue(2, 2));
+        }
     }
 }

@@ -117,5 +117,21 @@ namespace Rinex.Tests
 
             return m;
         }
+
+        public static Matrix Get_Inverse_Matrix_1()
+        {
+            Matrix m = new Matrix(3, 3);
+            m.SetValue(0, 0, 1);
+            m.SetValue(0, 1, 1);
+            m.SetValue(0, 2, -1);
+            m.SetValue(1, 0, 1);
+            m.SetValue(1, 1, 2);
+            m.SetValue(1, 2, 0);
+            m.SetValue(2, 0, -1);
+            m.SetValue(2, 1, 0);
+            m.SetValue(2, 2, 5);
+
+            return m;
+        }
     }
 }
