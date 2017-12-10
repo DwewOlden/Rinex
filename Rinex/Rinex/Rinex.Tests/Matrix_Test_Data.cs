@@ -59,5 +59,63 @@ namespace Rinex.Tests
 
             return m;
         }
+
+        public static Matrix Get_Multiplication_Matrix1()
+        {
+            Matrix m = new Matrix(2, 4);
+            m.SetValue(0, 0, 1);
+            m.SetValue(0, 1, 3);
+            m.SetValue(1, 0, 3);
+            m.SetValue(1, 1, 4);
+            m.SetValue(2, 0, 2);
+            m.SetValue(2, 1, 8);
+            m.SetValue(3, 0, 8);
+            m.SetValue(3, 1, 1);
+
+            return m;
+        }
+
+        public static Matrix Get_Multiplication_Matrix2()
+        {
+            Matrix m = new Matrix(3, 2);
+            m.SetValue(0, 0, 1);
+            m.SetValue(0, 1, 12);
+            m.SetValue(0, 2, 13);
+            m.SetValue(1, 0, 9);
+            m.SetValue(1, 1, 6);
+            m.SetValue(1, 2, 3);
+            
+            return m;
+        }
+
+        public static Matrix Get_Multiplication_Matrix3()
+        {
+            Matrix m = new Matrix(4, 2);
+            m.SetValue(0, 0, 1);
+            m.SetValue(0, 1, 2);
+            m.SetValue(0, 2, 3);
+            m.SetValue(0, 3, 4);
+            m.SetValue(1, 0, 2);
+            m.SetValue(1, 1, 3);
+            m.SetValue(1, 2, 4);
+            m.SetValue(1, 3, 5);
+
+            return m;
+        }
+
+        public static Matrix Get_Multiplication_Matrix4()
+        {
+            Matrix m = new Matrix(2, 4);
+            m.SetValue(0, 0, 2);
+            m.SetValue(0, 1, 3);
+            m.SetValue(1, 0, 3);
+            m.SetValue(1, 1, 2);
+            m.SetValue(2, 0, 2);
+            m.SetValue(2, 1, 3);
+            m.SetValue(3, 0, 3);
+            m.SetValue(3, 1, 2);
+
+            return m;
+        }
     }
 }

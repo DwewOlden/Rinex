@@ -27,26 +27,26 @@ namespace Rinex.Tests
         [Test]
         public void Matrix_Test_Addition_2()
         {
-            Matrix m1 = Matrix_Test_Data.Get_Interativly_Matrix_Test_Data(1000, 1000);
-            Matrix m2 = Matrix_Test_Data.Get_Interativly_Matrix_Test_Data(1000, 1000);
+            Matrix m1 = Matrix_Test_Data.Get_Interativly_Matrix_Test_Data(100, 100);
+            Matrix m2 = Matrix_Test_Data.Get_Interativly_Matrix_Test_Data(100, 100);
 
             Matrix m3 = Matrix.Add(m1, m2);
 
-            for (int i = 0; i < 1000; i++)
-                for (int j = 0; j < 1000; j++)
+            for (int i = 0; i < 100; i++)
+                for (int j = 0; j < 100; j++)
                     Assert.AreEqual(((i+j)*2), m3.GetValue(i, j));
         }
 
         [Test]
         public void Matrix_Test_Subtraction_2()
         {
-            Matrix m1 = Matrix_Test_Data.Get_Interativly_Matrix_Test_Data(1000, 1000);
-            Matrix m2 = Matrix_Test_Data.Get_Interativly_Matrix_Test_Data(1000, 1000);
+            Matrix m1 = Matrix_Test_Data.Get_Interativly_Matrix_Test_Data(100, 100);
+            Matrix m2 = Matrix_Test_Data.Get_Interativly_Matrix_Test_Data(100, 100);
 
             Matrix m3 = Matrix.Subtract(m1, m2);
 
-            for (int i = 0; i < 1000; i++)
-                for (int j = 0; j < 1000; j++)
+            for (int i = 0; i < 100; i++)
+                for (int j = 0; j < 100; j++)
                     Assert.AreEqual(0, m3.GetValue(i, j));
         }
 
@@ -115,6 +115,68 @@ namespace Rinex.Tests
 
         }
 
+        [Test]
+        public void Matrix_Multiplication_2()
+        {
+            Matrix m1 = new Matrix(3, 3);
+            Matrix m2 = new Matrix(3, 3);
 
+            for (int i = 0; i < 3; i++)
+                for (int j = 0; j < 3; j++)
+                {
+                    m1.SetValue(i, j, i + 1);
+                    m2.SetValue(i, j, i + 1);
+                }
+
+            Matrix m3 = Matrix.MultiplyMatrix(m1, m2);
+
+            Assert.AreEqual(6, m3.GetValue(0, 0));
+            Assert.AreEqual(6, m3.GetValue(0, 1));
+            Assert.AreEqual(6, m3.GetValue(0, 2));
+            Assert.AreEqual(12, m3.GetValue(1, 0));
+            Assert.AreEqual(12, m3.GetValue(1, 1));
+            Assert.AreEqual(12, m3.GetValue(1, 2));
+            Assert.AreEqual(18, m3.GetValue(2, 0));
+            Assert.AreEqual(18, m3.GetValue(2, 1));
+            Assert.AreEqual(18, m3.GetValue(2, 2));
+        }
+
+        [Test]
+        public void Matrix_Multiplication_3()
+        {
+            Matrix m1 = Matrix_Test_Data.Get_Multiplication_Matrix1();
+            Matrix m2 = Matrix_Test_Data.Get_Multiplication_Matrix2();
+
+            Matrix m3 = Matrix.MultiplyMatrix(m1, m2);
+
+            Assert.AreEqual(28, m3.GetValue(0, 0));
+            Assert.AreEqual(30, m3.GetValue(0, 1));
+            Assert.AreEqual(22, m3.GetValue(0, 2));
+            Assert.AreEqual(39, m3.GetValue(1, 0));
+            Assert.AreEqual(60, m3.GetValue(1, 1));
+            Assert.AreEqual(51, m3.GetValue(1, 2));
+            Assert.AreEqual(74, m3.GetValue(2, 0));
+            Assert.AreEqual(72, m3.GetValue(2, 1));
+            Assert.AreEqual(50, m3.GetValue(2, 2));
+            Assert.AreEqual(17, m3.GetValue(3, 0));
+            Assert.AreEqual(102, m3.GetValue(3, 1));
+            Assert.AreEqual(107, m3.GetValue(3, 2));
+            
+        }
+
+        [Test]
+        public void Matrix_Multiplication_4()
+        {
+            Matrix m1 = Matrix_Test_Data.Get_Multiplication_Matrix4();
+            Matrix m2 = Matrix_Test_Data.Get_Multiplication_Matrix3();
+
+            Matrix m3 = Matrix.MultiplyMatrix(m2, m1);
+
+            Assert.AreEqual(26, m3.GetValue(0, 0));
+            Assert.AreEqual(24, m3.GetValue(0, 1));
+            Assert.AreEqual(36, m3.GetValue(1, 0));
+            Assert.AreEqual(34, m3.GetValue(1, 1));
+            
+        }
     }
 }

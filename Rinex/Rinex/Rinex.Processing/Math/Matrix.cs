@@ -61,7 +61,7 @@ namespace Rinex.Processing.Math
         /// </summary>
         /// <param name="Rows">The number of rows in the matrix</param>
         /// <param name="Columns">The number of columns in the matrix</param>
-        public Matrix(int Rows,int Columns)
+        public Matrix(int Columns,int Rows)
         {
             if (Rows < 1 || Columns < 1)
                 throw new ArgumentOutOfRangeException("rows / columns", "the number of rows and columns must both be greater than zero");
@@ -89,20 +89,19 @@ namespace Rinex.Processing.Math
         /// <returns>The result of the matrix multiplation operation</returns>
         public static Matrix MultiplyMatrix(Matrix source, Matrix target)
         {
-            if ((source.Columns != target.Columns) || (source.Rows != target.Rows))
-                throw new ArgumentException("the matrix are not the same dimensions");
+            // Constructor is columns and rows.
 
-            Matrix m = new Matrix(source.Rows, target.Columns);
+            Matrix m = new Matrix(target.Columns, source.Rows);
 
-            for (int i =0;i<source.Columns;i++)
-                for (int j=0;j<target.Rows;j++)
-                    for (int k = 0;k<source.Columns;k++)
+            for (int i = 0; i < source.Rows; i++)
+                for (int j = 0; j < target.Columns; j++)
+                    for (int k = 0; k < source.Columns; k++)
                     {
                         double d = m.GetValue(i, j);
-                        d = d + (source.GetValue(i, k) * target.GetValue(k, j));
-                        m.SetValue(i, j, d);
+                        d += source.GetValue(i,k) * target.GetValue(k,j);
+                        m.SetValue(i, j, d); 
                     }
-
+                
             return m;
         }
 
