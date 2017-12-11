@@ -35,9 +35,9 @@ namespace Rinex.Processing.Math
         {
             string s = string.Empty;
             for (int i = 0; i < mSize_; i++)
-                s = s + mElements_[i] + "-> ";
+                s = s + mElements_[i] + "->";
 
-            s = s.Substring(0, s.Length - 3);
+            s = s.Substring(0, s.Length - 2);
             return s;
         }
 
@@ -54,8 +54,15 @@ namespace Rinex.Processing.Math
                 return false;
             else
             {
-                // Needs futher work.
-                return false;
+                Vector v = (Vector)obj;
+                if (v.mSize_ != mSize_)
+                    return false;
+                else
+                    for (int i = 0; i < mSize_; i++)
+                        if (v.GetValue(i) != this.mElements_[i])
+                            return false;
+
+                return true;
             }
         }
 
