@@ -69,5 +69,69 @@ namespace Rinex.Tests
             Assert.AreEqual(E, s);
         }
 
+        [Test]
+        public void Vector_IncreaseSize_1()
+        {
+            Vector v1 = new Vector(4);
+
+            for (int i = 0; i < 4; i++)
+                v1.SetValue(i, (double)i);
+
+            v1.IncreaseSize(5);
+
+            string s = v1.ToString();
+            string E = "0->1->2->3->0";
+
+            Assert.AreEqual(E, s);
+        }
+
+        [Test]
+        public void Vector_IncreaseSize_2()
+        {
+            Vector v1 = new Vector(4);
+
+            for (int i = 0; i < 4; i++)
+                v1.SetValue(i, (double)i);
+
+            v1.IncreaseSize(7);
+
+            string s = v1.ToString();
+            string E = "0->1->2->3->0->0->0";
+
+            Assert.AreEqual(E, s);
+        }
+
+        [Test]
+        public void Vector_DecreaseSize_1()
+        {
+            Vector v1 = new Vector(4);
+
+            for (int i = 0; i < 4; i++)
+                v1.SetValue(i, (double)i);
+
+            v1.DescreaseSize(3);
+
+            string s = v1.ToString();
+            string E = "0->1->2";
+
+            Assert.AreEqual(E, s);
+        }
+
+        [Test]
+        public void Vector_DecreaseSize_2()
+        {
+            Vector v1 = new Vector(10);
+
+            for (int i = 0; i < 10; i++)
+                v1.SetValue(i, (double)i*2);
+
+            v1.DescreaseSize(4);
+
+            string s = v1.ToString();
+            string E = "0->2->4->6";
+
+            Assert.AreEqual(E, s);
+        }
+
     }
 }
