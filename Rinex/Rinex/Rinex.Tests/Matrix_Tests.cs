@@ -12,6 +12,39 @@ namespace Rinex.Tests
     public class Matrix_Tests
     {
         [Test]
+        public void Matrix_Equals_Test()
+        {
+            Matrix m = new Matrix(4, 4);
+            Matrix m2 = new Matrix(4, 4);
+
+            for (int i = 0;i<4;i++)
+                for (int j = 0;j<4;j++)
+                {
+                    m.SetValue(i, j, (int)i);
+                    m2.SetValue(i, j, (int)i);
+                }
+
+            Assert.AreEqual(m, m2); 
+        }
+
+        [Test]
+        public void Matrix_Equals_Must_Be_False()
+        {
+            Matrix m = new Matrix(4, 4);
+            Matrix m2 = new Matrix(4, 4);
+
+            for (int i = 0; i < 4; i++)
+                for (int j = 0; j < 4; j++)
+                {
+                    m.SetValue(i, j, (int)i);
+                    m2.SetValue(i, j, (int)i*2);
+                }
+
+            Assert.AreNotEqual(m, m2);
+        }
+
+
+        [Test]
         public void Matrix_IsZero_True_Test()
         {
             Matrix m = new Matrix(4, 4);

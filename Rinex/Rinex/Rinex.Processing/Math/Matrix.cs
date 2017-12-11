@@ -333,5 +333,33 @@ namespace Rinex.Processing.Math
         {
             mData[Row, Col] = Value;
         }
+
+        public override int GetHashCode()
+        {
+            return ((mCols * mRows) * (int)mData.GetValue(0, 0));
+        }
+
+        public override bool Equals(object obj)
+        {
+            if (obj == null)
+                return false;
+            else if (this.GetType() != obj.GetType())
+                return false;
+            else
+            {
+                Matrix m = (Matrix)obj;
+                if ((this.Columns != m.Columns) && (this.Rows != m.Rows))
+                    return false;
+                else
+                {
+                    for (int i = 0; i < this.Columns; i++)
+                        for (int j = 0; j < this.Columns; j++)
+                            if (this.GetValue(i, j) != m.GetValue(i, j))
+                                return false;
+
+                    return true;
+                }
+            }
+        }
     }
 }
