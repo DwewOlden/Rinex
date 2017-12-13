@@ -12,6 +12,28 @@ namespace Rinex.Tests
     public class Matrix_Tests
     {
         [Test]
+        public void Matrix_IsSingular_Test_1()
+        {
+            Matrix m = Matrix_Test_Data.Is_Singular_Test_1();
+            Assert.AreEqual(false,m.IsSingular);
+        }
+
+        [Test]
+        public void Matrix_IsSingular_Test_2()
+        {
+            Matrix m = Matrix_Test_Data.Is_Singular_Test_2();
+            Assert.AreEqual(true, m.IsSingular);
+        }
+
+        [Test]
+        public void Matrix_IsSingular_Test_3()
+        {
+            Matrix m = Matrix_Test_Data.Is_Singular_Test_3();
+            Assert.AreEqual(true, m.IsSingular);
+        }
+
+
+        [Test]
         public void Matrix_Equals_Test()
         {
             Matrix m = new Matrix(4, 4);

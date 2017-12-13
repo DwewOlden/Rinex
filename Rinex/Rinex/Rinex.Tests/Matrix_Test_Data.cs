@@ -133,5 +133,113 @@ namespace Rinex.Tests
 
             return m;
         }
+
+        public static Matrix Is_Singular_Test_1()
+        {
+            Matrix temp = new Matrix(5, 5);
+            temp.SetValue(0, 0, 1);
+            temp.SetValue(0, 1, 2);
+            temp.SetValue(0, 2, 3);
+            temp.SetValue(0, 3, 4);
+            temp.SetValue(0, 4, 5);
+
+            temp.SetValue(1, 0, 1);
+            temp.SetValue(1, 1, 2);
+            temp.SetValue(1, 2, 3);
+            temp.SetValue(1, 3, 4);
+            temp.SetValue(1, 4, 5);
+
+            temp.SetValue(2, 0, 1);
+            temp.SetValue(2, 1, 2);
+            temp.SetValue(2, 2, 3);
+            temp.SetValue(2, 3, 4);
+            temp.SetValue(2, 4, 5);
+
+            temp.SetValue(3, 0, 1);
+            temp.SetValue(3, 1, 2);
+            temp.SetValue(3, 2, 3);
+            temp.SetValue(3, 3, 4);
+            temp.SetValue(3, 4, 5);
+
+            temp.SetValue(4, 0, 1);
+            temp.SetValue(4, 1, 2);
+            temp.SetValue(4, 2, 3);
+            temp.SetValue(4, 3, 4);
+            temp.SetValue(4, 4, 5);
+
+            return temp;
+        }
+
+        public static Matrix Is_Singular_Test_2()
+        {
+            Matrix temp = new Matrix(5, 5);
+            temp.SetValue(0, 0, 0);
+            temp.SetValue(0, 1, 2);
+            temp.SetValue(0, 2, 3);
+            temp.SetValue(0, 3, 4);
+            temp.SetValue(0, 4, 5);
+
+            temp.SetValue(1, 0, 0);
+            temp.SetValue(1, 1, 2);
+            temp.SetValue(1, 2, 3);
+            temp.SetValue(1, 3, 4);
+            temp.SetValue(1, 4, 5);
+
+            temp.SetValue(2, 0, 0);
+            temp.SetValue(2, 1, 2);
+            temp.SetValue(2, 2, 3);
+            temp.SetValue(2, 3, 4);
+            temp.SetValue(2, 4, 5);
+
+            temp.SetValue(3, 0, 0);
+            temp.SetValue(3, 1, 2);
+            temp.SetValue(3, 2, 3);
+            temp.SetValue(3, 3, 4);
+            temp.SetValue(3, 4, 5);
+
+            temp.SetValue(4, 0, 0);
+            temp.SetValue(4, 1, 2);
+            temp.SetValue(4, 2, 3);
+            temp.SetValue(4, 3, 4);
+            temp.SetValue(4, 4, 5);
+
+            return temp;
+        }
+
+        public static Matrix Is_Singular_Test_3()
+        {
+            Matrix temp = new Matrix(5, 5);
+            temp.SetValue(0, 0, 1);
+            temp.SetValue(0, 1, 2);
+            temp.SetValue(0, 2, 3);
+            temp.SetValue(0, 3, 4);
+            temp.SetValue(0, 4, 5);
+
+            temp.SetValue(1, 0, 1);
+            temp.SetValue(1, 1, 2);
+            temp.SetValue(1, 2, 3);
+            temp.SetValue(1, 3, 4);
+            temp.SetValue(1, 4, 5);
+
+            temp.SetValue(2, 0, 1);
+            temp.SetValue(2, 1, 2);
+            temp.SetValue(2, 2, 3);
+            temp.SetValue(2, 3, 4);
+            temp.SetValue(2, 4, 5);
+
+            temp.SetValue(3, 0, 1);
+            temp.SetValue(3, 1, 2);
+            temp.SetValue(3, 2, 3);
+            temp.SetValue(3, 3, 4);
+            temp.SetValue(3, 4, 5);
+
+            temp.SetValue(4, 0, 0);
+            temp.SetValue(4, 1, 0);
+            temp.SetValue(4, 2, 0);
+            temp.SetValue(4, 3, 0);
+            temp.SetValue(4, 4, 0);
+
+            return temp;
+        }
     }
 }

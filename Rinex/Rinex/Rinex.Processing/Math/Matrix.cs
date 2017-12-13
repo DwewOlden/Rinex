@@ -82,11 +82,39 @@ namespace Rinex.Processing.Math
         {
             get
             {
+                if (mCols != mRows)
+                    return false;
                 
-                return true;
+                Matrix m1 = new Matrix(mCols,1);
+                Matrix m2 = new Matrix(1, mRows);
+
+                 for (int i = 0; i < mRows; ++i)
+                    for (int j = 0; j < mCols; ++j)
+                    {
+                        double currentRowValue = m2.GetValue(i, 0);
+                        double currentColumnValue = m1.GetValue(0,j);
+
+                        currentRowValue = currentRowValue + this.GetValue(i, j);
+                        currentColumnValue = currentColumnValue + this.GetValue(i, j);
+
+                        m2.SetValue(i, 0, currentRowValue);
+                        m1.SetValue(0, j, currentColumnValue);
+
+                    }
+
+                for (int i = 0; i < mRows; i++)
+                    if (m2.GetValue(i, 0) == 0)
+                        return true;
+
+                for (int i = 0; i < mCols; i++)
+                    if (m1.GetValue(0,i) == 0)
+                        return true;
+
+                return false;
             }
         }
 
+                
         /// <summary>
         /// Default construcor
         /// </summary>
