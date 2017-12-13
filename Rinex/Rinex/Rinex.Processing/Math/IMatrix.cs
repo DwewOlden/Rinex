@@ -25,5 +25,7 @@ namespace Rinex.Processing.Math
         void SetValue(int Row, int Col,double Value);
 
         Matrix Transpose();
+
+        double Sum { get; }
     }
 }

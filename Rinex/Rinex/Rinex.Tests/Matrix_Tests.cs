@@ -32,6 +32,15 @@ namespace Rinex.Tests
             Assert.AreEqual(true, m.IsSingular);
         }
 
+        [Test]
+        public void Matrix_Sum_Test_1()
+        {
+            Matrix m = Matrix_Test_Data.Is_Singular_Test_1();
+            double sum = m.Sum;
+
+            Assert.AreEqual(75, sum);
+        }
+
 
         [Test]
         public void Matrix_Equals_Test()

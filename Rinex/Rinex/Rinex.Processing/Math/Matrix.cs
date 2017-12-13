@@ -114,7 +114,24 @@ namespace Rinex.Processing.Math
             }
         }
 
-                
+        /// <summary>
+        /// Returns the sum of the elements of the matrix
+        /// </summary>
+        public double Sum
+        {
+            get
+            {
+                double lSum = 0;
+
+                for (int i = 0; i < mRows; i++)
+                    for (int j = 0; j < mCols; j++)
+                        lSum = lSum + this.GetValue(i, j);
+
+                return lSum;
+            }
+        }
+
+
         /// <summary>
         /// Default construcor
         /// </summary>

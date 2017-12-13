@@ -17,5 +17,6 @@ namespace Rinex.Processing.Math
         void IncreaseSize(int pNewSize);
 
         void DescreaseSize(int pNewSize);
+
     }
 }
