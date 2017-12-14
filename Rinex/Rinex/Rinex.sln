@@ -11,6 +11,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Rinex.Tests", "Rinex.Tests\
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Rinex.Testbed", "Rinex.Testbed\Rinex.Testbed.csproj", "{4F36AA6E-967E-4006-8306-C78368466B37}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Rinex.Structures", "Rinex.Structures\Rinex.Structures.csproj", "{6CDB7B28-626A-438A-9BBE-C5924A37091C}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -33,6 +35,10 @@ Global
 		{4F36AA6E-967E-4006-8306-C78368466B37}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{4F36AA6E-967E-4006-8306-C78368466B37}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{4F36AA6E-967E-4006-8306-C78368466B37}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6CDB7B28-626A-438A-9BBE-C5924A37091C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6CDB7B28-626A-438A-9BBE-C5924A37091C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6CDB7B28-626A-438A-9BBE-C5924A37091C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6CDB7B28-626A-438A-9BBE-C5924A37091C}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
