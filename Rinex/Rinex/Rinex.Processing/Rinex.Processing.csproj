@@ -45,6 +45,7 @@
     <Compile Include="Math\IVector.cs" />
     <Compile Include="Math\Matrix.cs" />
     <Compile Include="Math\Vector.cs" />
+    <Compile Include="Models\TropesphericModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
