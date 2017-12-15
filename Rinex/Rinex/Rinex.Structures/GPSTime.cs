@@ -175,5 +175,10 @@ namespace Rinex.Structures
 
             return numleaps;
         }
+
+        public override string ToString()
+        {
+            return string.Format("({0}-{1}) {2}/{3}/{4}:{5}:{6}:{7})", mGPSWeek_, mSeconds_, mDateTime_.Day, mDateTime_.Month, mDateTime_.Year, mDateTime_.Hour, mDateTime_.Minute, mDateTime_.Second);
+        }
     }
 }

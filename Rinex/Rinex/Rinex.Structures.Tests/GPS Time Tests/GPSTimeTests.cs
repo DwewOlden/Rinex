@@ -10,6 +10,17 @@ namespace Rinex.Structures.Tests.GPS_Time_Tests
     [TestFixture]
     public class GPSTimeTests
     {
+        [TestCase(2017, 6, 6, 6, 6, 6, 1952, 194766)]
+        public void GPS_Test_3(int Year, int Month, int Date, int Hour, int Minute, int Second, int GPSWeek, int GPSSeconds)
+        {
+            string s = "(1952-194766) 6/6/2017:6:6:6)";
+            IGPSTime t = new GPSTime(GPSWeek, GPSSeconds);
+
+            Assert.AreEqual(s, t.ToString());
+
+
+        }
+
         [TestCase(1980, 1, 7, 0, 0, 0, 0, 86400)]
         [TestCase(1980, 1, 7, 0, 0, 1, 0, 86401)]
         [TestCase(1980, 1, 7, 0, 2, 10, 0, 86530)]
