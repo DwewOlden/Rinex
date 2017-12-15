@@ -12,26 +12,12 @@ namespace Rinex.Structures
     /// </summary>
     public interface IGPSTime
     {
-        int Year { get; }
+        DateTime RegularDateTime { get; }
 
-        int Month { get; }
-
-        int Day { get; }
-
-        int Hour { get; }
-
-        int Minute { get; }
-
-        int DayOfYear { get; }
-
-        double Seconds { get; }
+        int GPSWeek { get; }
 
         double GPSSeconds { get; }
-
-        int Week { get; }
-
-        bool IsZero { get; }
-
+        
 
     }
 }
