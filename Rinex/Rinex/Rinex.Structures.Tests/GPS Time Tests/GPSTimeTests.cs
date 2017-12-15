@@ -10,15 +10,35 @@ namespace Rinex.Structures.Tests.GPS_Time_Tests
     [TestFixture]
     public class GPSTimeTests
     {
+        [TestCase(1980, 1, 7, 0, 0, 0, 0, 86400)]
+        [TestCase(1980, 1, 7, 0, 0, 1, 0, 86401)]
+        [TestCase(1980, 1, 7, 0, 2, 10, 0, 86530)]
+        [TestCase(1980, 1, 9, 0, 0, 0, 0, 259200)]
+        [TestCase(1986, 6, 9, 0, 0, 0, 335, 86400)]
+        [TestCase(1986, 6, 9, 18, 34, 3, 335, 153243)]
+        [TestCase(2017, 6, 6, 6, 6, 6, 1952, 194766)]
+        public void GPS_Test_4(int Year, int Month, int Date, int Hour, int Minute, int Second, int GPSWeek, int GPSSeconds)
+        {
+            IGPSTime t = new GPSTime(GPSWeek, GPSSeconds);
+            IGPSTime t1 = new GPSTime(Year,Month,Date,Hour,Minute,Second);
+            Assert.AreEqual(t, t1);
+        }
+
+
         [TestCase(2017, 6, 6, 6, 6, 6, 1952, 194766)]
         public void GPS_Test_3(int Year, int Month, int Date, int Hour, int Minute, int Second, int GPSWeek, int GPSSeconds)
         {
             string s = "(1952-194766) 6/6/2017:6:6:6)";
             IGPSTime t = new GPSTime(GPSWeek, GPSSeconds);
-
             Assert.AreEqual(s, t.ToString());
+        }
 
-
+        [TestCase(1986, 6, 9, 18, 34, 3, 335, 153243)]
+        public void GPS_Test_5(int Year, int Month, int Date, int Hour, int Minute, int Second, int GPSWeek, int GPSSeconds)
+        {
+            string s = "(335-153243) 9/6/1986:18:34:3)";
+            IGPSTime t = new GPSTime(GPSWeek, GPSSeconds);
+            Assert.AreEqual(s, t.ToString());
         }
 
         [TestCase(1980, 1, 7, 0, 0, 0, 0, 86400)]

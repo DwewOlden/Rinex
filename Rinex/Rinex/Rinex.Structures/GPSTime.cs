@@ -180,5 +180,27 @@ namespace Rinex.Structures
         {
             return string.Format("({0}-{1}) {2}/{3}/{4}:{5}:{6}:{7})", mGPSWeek_, mSeconds_, mDateTime_.Day, mDateTime_.Month, mDateTime_.Year, mDateTime_.Hour, mDateTime_.Minute, mDateTime_.Second);
         }
+
+        public override int GetHashCode()
+        {
+            return mSeconds_ * mGPSWeek_;
+        }
+
+        public override bool Equals(object obj)
+        {
+            if (obj == null)
+                return false;
+            else if (obj.GetType() != this.GetType())
+                return false;
+            else
+            {
+                GPSTime t = (GPSTime)obj;
+                if ((this.mGPSWeek_ == t.mGPSWeek_) && (this.mSeconds_ == t.mSeconds_))
+                    return true;
+                else
+                    return false;
+            }
+
+        }
     }
 }
