@@ -276,5 +276,39 @@ namespace Rinex.Processing.Models
             mR.SetValue(12, 7, 0.047);
 
         }
+
+        /// <summary>
+        /// Gets the height pointer based on the passed height
+        /// </summary>
+        /// <param name="pHeight">The height in Kilometers</param>
+        /// <returns>The index in the correction matrix</returns>
+        public int GetHeightIndex(double pHeight)
+        {
+            int lHeightPointer = 0;
+            int i = 0;
+
+            for (i = 0; i < 7; i++)
+                if (mHeightCorrections.GetValue(i, 0) <= pHeight)
+                    lHeightPointer = i;
+
+            return lHeightPointer;
+        }
+
+        /// <summary>
+        /// Gets the height pointer based on the passed height
+        /// </summary>
+        /// <param name="pZenith">The height in Kilometers</param>
+        /// <returns>The index in the correction matrix</returns>
+        public int GetZenithIndex(double pZenith)
+        {
+            int lZenithPointer = 0;
+            int i = 0;
+
+            for (i = 0; i < 12; i++)
+                if ((mZenithCorrections.GetValue(i, 0) <= pZenith) && (pZenith > 60.0))
+                    lZenithPointer = i;
+
+            return lZenithPointer;
+        }
     }
 }
