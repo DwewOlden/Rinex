@@ -14,16 +14,16 @@ namespace Rinex.Processing.Models
         /// <summary>
         /// Temprature taken from the standard atmosphere model
         /// </summary>
-        private const double Temperature = 18.0;
+        public const double Temperature = 18.0;
 
         /// <summary>
         /// Pressure taken from the standard atmosphere model
         /// </summary>
-        private const double Pressure = 1013.25;
+        public const double Pressure = 1013.25;
 
         /// <summary>
         /// Humidty taken drom the standard atmosphere mode;
         /// </summary>
-        private const double Humidity = 50.0;
+        public const double Humidity = 50.0;
     }
 }
