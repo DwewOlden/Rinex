@@ -18,6 +18,8 @@ namespace Rinex.Tests
         [TestCase(1.25, 2)]
         [TestCase(2.1,4)]
         [TestCase(4.5, 6)]
+        [TestCase(1.5,3)]
+        [TestCase(1.51, 3)]
         public void Tropesphere_Height_Index_4(double pHeight, int Index)
         {
             lookups_ = new TroposphereModelLookups();
