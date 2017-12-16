@@ -12,6 +12,48 @@ namespace Rinex.Processing.Models
     /// <remarks>"Guochang Xu, GPS - Theory, Algorithms and Applications, Springer, 2007"</remarks>
     public class TropesphericModel
     {
+        /// <summary>
+        /// Contains the values used when interpolating the values
+        /// </summary>
+        TroposphereModelLookups mLookups_;
+
+        public TropesphericModel()
+        {
+            mLookups_ = new TroposphereModelLookups();
+        }
+
+        /// <summary>
+        /// Calculates the loss due to signal having to travel througth the tropesphere
+        /// </summary>
+        /// <param name="pHeight">The height above sea level of the receiver</param>
+        /// <param name="pZenith">The zenith of the location</param>
+        /// <returns>The loss of the signal (measured in terms of the delay in time) due to the travel througth the tropesphere </returns>
+        double CalculateTheLossDueToTropesphere(double pHeight, double pZenith)
+        {
+            double lHeight = CleanHeight(pHeight);
+
+            // Correct the pressure value at the height
+            CalculateValuesAtHeght(lHeight, out double lPressureAtHeight, out double lTempratureAtHeight, out double lHumidityAtHeight, out double lWaterPressureAtHeight);
+            double lHeightInKilometers = CalculateHeightAsKilometers(lHeight);
+
+            int lHeightPointer = mLookups_.GetHeightIndex(lHeightInKilometers);
+            int lZenithPointer = mLookups_.GetZenithIndex(pZenith);
+
+            double lInterpolatedPressureValue = mLookups_.CalculateInterpolatedPressure(lHeightInKilometers, lHeightPointer);
+            double lInterpolatedRangeValue = 0;
+
+            if (pZenith > 60)
+                lInterpolatedRangeValue = mLookups_.CalculatedInterpolatedRange(lHeightInKilometers, lHeightPointer, lZenithPointer, pZenith);
+            
+            double lZenithInRadians = (pZenith * (System.Math.PI / 180));
+            double lTropesphericCorrection = lPressureAtHeight + (((1255 / lTempratureAtHeight) + 0.05) *lWaterPressureAtHeight) -
+                                      (lInterpolatedPressureValue * System.Math.Tan(lZenithInRadians) * System.Math.Tan(lZenithInRadians));
+
+            lTropesphericCorrection *= (0.002277 / System.Math.Cos(lZenithInRadians));
+            lTropesphericCorrection += lInterpolatedRangeValue;
+
+            return lTropesphericCorrection;
+        }
 
         /// <summary>
         /// Cleans the height if it is beyond certain extremes

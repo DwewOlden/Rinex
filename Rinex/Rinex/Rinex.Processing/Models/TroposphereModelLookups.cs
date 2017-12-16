@@ -323,7 +323,37 @@ namespace Rinex.Processing.Models
             double Binterpolated = mPressureCorrections.GetValue(pHeightIndex, 0) + ((mPressureCorrections.GetValue(pHeightIndex + 1, 0) - mPressureCorrections.GetValue(pHeightIndex, 0)) *
                                                                  (pHeightInKM - mHeightCorrections.GetValue(pHeightIndex, 0)));
 
+
+            // return the interpolated value for the pressure
             return Binterpolated;
+        }
+
+        /// <summary>
+        /// Calculates the interpolated value for the range
+        /// </summary>
+        /// <param name="pHeightInKm">The height in kilometers</param>
+        /// <param name="pHeightPointer">The cell in the height corrections</param>
+        /// <param name="pZenithPointer">The cell in the zenith corrections</param>
+        /// <param name="pZenith">The zenith value</param>
+        /// <returns>The interpolated value for the range correction</returns>
+        public double CalculatedInterpolatedRange(double pHeightInKm,int pHeightPointer,int pZenithPointer,double pZenith)
+        {
+            // interpolate lower line
+            double Rlower = mR.GetValue(pZenithPointer, pHeightPointer) + (((mR.GetValue(pZenithPointer + 1, pHeightPointer) - mR.GetValue(pZenithPointer, pHeightPointer)) /
+                                                        (mZenithCorrections.GetValue(pZenithPointer + 1, 0) - mZenithCorrections.GetValue(pZenithPointer, 0))) *
+                                                        (pZenith - mZenithCorrections.GetValue(pZenithPointer, 0)));
+            // interpolate upper line
+            double Rupper = mR.GetValue(pZenithPointer, pHeightPointer + 1) + (((mR.GetValue(pZenithPointer + 1, pHeightPointer + 1) - mR.GetValue(pZenithPointer, pHeightPointer + 1)) /
+                                                           (mZenithCorrections.GetValue(pZenithPointer + 1, 0) - mZenithCorrections.GetValue(pZenithPointer, 0))) *
+                                                           (pZenith - mZenithCorrections.GetValue(pZenithPointer, 0)));
+
+            // interpolate vertically
+            double Rinterpolated = Rlower + (((Rupper - Rlower) /
+                                                (mHeightCorrections.GetValue(pHeightPointer + 1, 0) - mHeightCorrections.GetValue(pHeightPointer, 0))) *
+                                                (pHeightInKm - mHeightCorrections.GetValue(pHeightPointer, 0)));
+
+            // return the interpolayed value for the range.
+            return Rinterpolated;
         }
     }
 }
