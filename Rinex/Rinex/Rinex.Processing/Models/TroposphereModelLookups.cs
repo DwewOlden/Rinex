@@ -310,5 +310,20 @@ namespace Rinex.Processing.Models
 
             return lZenithPointer;
         }
+
+        /// <summary>
+        /// Calculates the interolated pressure value for the passed height
+        /// </summary>
+        /// <param name="pHeightInKM">The height in Kilometers</param>
+        /// <param name="pHeightIndex">The height index</param>
+        /// <returns>The interpolated distance</returns>
+        public double CalculateInterpolatedPressure(double pHeightInKM, int pHeightIndex)
+        {
+            // Interpolate correction term B for specific height
+            double Binterpolated = mPressureCorrections.GetValue(pHeightIndex, 0) + ((mPressureCorrections.GetValue(pHeightIndex + 1, 0) - mPressureCorrections.GetValue(pHeightIndex, 0)) *
+                                                                 (pHeightInKM - mHeightCorrections.GetValue(pHeightIndex, 0)));
+
+            return Binterpolated;
+        }
     }
 }
