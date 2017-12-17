@@ -304,7 +304,7 @@ namespace Rinex.Processing.Models
             int lZenithPointer = 0;
             int i = 0;
 
-            for (i = 0; i <= 12; ++i)
+            for (i = 0; i < 12; i++)
                 if ((mZenithCorrections.GetValue(i, 0) <= pZenith) && (pZenith > 60.0))
                     lZenithPointer = i;
 

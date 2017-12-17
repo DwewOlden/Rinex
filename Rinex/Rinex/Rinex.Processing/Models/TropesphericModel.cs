@@ -28,7 +28,7 @@ namespace Rinex.Processing.Models
         /// <param name="pHeight">The height above sea level of the receiver</param>
         /// <param name="pZenith">The zenith of the location</param>
         /// <returns>The loss of the signal (measured in terms of the delay in time) due to the travel througth the tropesphere </returns>
-        double CalculateTheLossDueToTropesphere(double pHeight, double pZenith)
+        public double CalculateTheLossDueToTropesphere(double pHeight, double pZenith)
         {
             double lHeight = CleanHeight(pHeight);
 
@@ -45,7 +45,7 @@ namespace Rinex.Processing.Models
             if (pZenith > 60)
                 lInterpolatedRangeValue = mLookups_.CalculatedInterpolatedRange(lHeightInKilometers, lHeightPointer, lZenithPointer, pZenith);
             
-            double lZenithInRadians = (pZenith * (System.Math.PI / 180));
+            double lZenithInRadians = (pZenith * (System.Math.PI / 180.0));
             double lTropesphericCorrection = lPressureAtHeight + (((1255 / lTempratureAtHeight) + 0.05) *lWaterPressureAtHeight) -
                                       (lInterpolatedPressureValue * System.Math.Tan(lZenithInRadians) * System.Math.Tan(lZenithInRadians));
 
