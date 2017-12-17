@@ -62,6 +62,21 @@ namespace Rinex.Structures
         }
 
         /// <summary>
+        /// Returns true if the location is centered at point 0.
+        /// </summary>
+        public bool IsZero
+        {
+            get
+            {
+                if (mX_ == 0 && mY_ == 0 && mZ_ == 0)
+                    return true;
+                else
+                    return false;
+            }
+        }
+
+        
+        /// <summary>
         /// Default constructor
         /// </summary>
         /// <param name="pX">The x position of the location</param>
@@ -72,6 +87,40 @@ namespace Rinex.Structures
             mX_ = pX;
             mY_ = pY;
             mZ_ = pZ;
+        }
+
+        public Position(Position p)
+        {
+            mX_ = p.mX_;
+            mY_ = p.mY_;
+            mZ_ = p.mZ_;
+        }
+
+        public override string ToString()
+        {
+            return string.Format("X:{0}, Y:{1}, Z:{2}", mX_, mY_, mZ_);
+        }
+
+        public override int GetHashCode()
+        {
+            return (int)mX_;
+        }
+
+        public override bool Equals(object obj)
+        {
+            if (obj == null)
+                return false;
+            else if (this.GetType() != obj.GetType())
+                return false;
+            else
+            {
+                Position p = (Position)obj;
+                if ((this.mX_ != p.mX_) && (this.mY_ != p.mY_) && (this.mZ_ != p.mZ_))
+                    return false;
+                else
+                    return true;
+
+            }
         }
     }
 }

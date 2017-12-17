@@ -16,5 +16,7 @@ namespace Rinex.Structures.Interfaces
         double Y { get; }
 
         double Z { get; }
+
+        bool IsZero { get; }
     }
 }
