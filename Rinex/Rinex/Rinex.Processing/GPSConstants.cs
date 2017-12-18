@@ -12,6 +12,8 @@ namespace Rinex.Processing
     /// </summary>
     public class GPSConstants
     {
+        public const double MaxZenith = 89.99999;
+
         public const double GPSPI = 3.1415926535898e0;
 
         public const double RAD = 180.0 / System.Math.PI;

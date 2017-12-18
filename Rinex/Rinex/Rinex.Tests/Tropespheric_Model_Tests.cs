@@ -13,14 +13,17 @@ namespace Rinex.Tests
     {
         private TropesphericModel model_;
         private TroposphereModelLookups lookups_;
+        
 
-
-        [TestCase(50,90, -1.1426928054866912e+46)]
+        [TestCase(50,80, 13.409309260377523)]
+        [TestCase(500, 85, 22.261571285266545)]
+        [TestCase(1000, 85, 20.737807760171684)]
+        [TestCase(2244, 89, -260.44471183695794)]
         public void TropesphericLoss(double a,double b,double c)
         {
             TropesphericModel m = new TropesphericModel();
-            double d = m.CalculateTheLossDueToTropesphere(50, 90);
-            Assert.AreEqual(d, c);
+            double d = m.CalculateTheLossDueToTropesphere(a, b);
+            Assert.AreEqual(c, d,0.0001);
         }
 
         [TestCase(0.001,0, 1.1559230180978775)]

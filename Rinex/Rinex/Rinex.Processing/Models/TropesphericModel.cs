@@ -30,6 +30,7 @@ namespace Rinex.Processing.Models
         /// <returns>The loss of the signal (measured in terms of the delay in time) due to the travel througth the tropesphere </returns>
         public double CalculateTheLossDueToTropesphere(double pHeight, double pZenith)
         {
+            pZenith = CleanZenith(pZenith);
             double lHeight = CleanHeight(pHeight);
 
             // Correct the pressure value at the height
@@ -44,8 +45,11 @@ namespace Rinex.Processing.Models
 
             if (pZenith > 60)
                 lInterpolatedRangeValue = mLookups_.CalculatedInterpolatedRange(lHeightInKilometers, lHeightPointer, lZenithPointer, pZenith);
-            
-            double lZenithInRadians = (pZenith * (System.Math.PI / 180.0));
+
+            double x = System.Math.Tan(89.999);
+
+            double lZenithInRadians = (pZenith * (3.141592653589793 / 180.0));
+            double v = System.Math.Tan(lZenithInRadians);
             double lTropesphericCorrection = lPressureAtHeight + (((1255 / lTempratureAtHeight) + 0.05) *lWaterPressureAtHeight) -
                                       (lInterpolatedPressureValue * System.Math.Tan(lZenithInRadians) * System.Math.Tan(lZenithInRadians));
 
@@ -53,6 +57,20 @@ namespace Rinex.Processing.Models
             lTropesphericCorrection += lInterpolatedRangeValue;
 
             return lTropesphericCorrection;
+        }
+
+        /// <summary>
+        /// Makes sure the zenith value is appropriate.
+        /// </summary>
+        /// <remarks>A zenith of 90 would be bad. Very tan(90) = Infinity</remarks>
+        /// <param name="pZenith">The zenith we are checking</param>
+        /// <returns>A cleaned zenith value</returns>
+        private double CleanZenith(double pZenith)
+        {
+            if (pZenith == 90)
+                return GPSConstants.MaxZenith;
+            else
+                return pZenith;
         }
 
         /// <summary>
