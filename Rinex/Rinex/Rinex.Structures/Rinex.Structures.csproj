@@ -42,7 +42,9 @@
   <ItemGroup>
     <Compile Include="Constants\MonthNames.cs" />
     <Compile Include="Constants\RinexConstants.cs" />
+    <Compile Include="Ephemeris.cs" />
     <Compile Include="GPSTime.cs" />
+    <Compile Include="Interfaces\IEphemeris.cs" />
     <Compile Include="Interfaces\IGPSTime.cs" />
     <Compile Include="Interfaces\IPosition.cs" />
     <Compile Include="Position.cs" />
