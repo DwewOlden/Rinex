@@ -406,5 +406,24 @@ namespace Rinex.Processing.Math
                 }
             }
         }
+
+        public static Matrix operator %(Matrix m1,Matrix m2)
+        {
+            int mr = m1.Rows;
+            int mc = m2.Columns;
+
+            Matrix m = new Matrix(mc, mr);
+
+            for (int i = 0; i < mr; ++i)
+                for (int j = 0; j < mc; ++j)
+                    for (int k = 0; k < m1.Columns; ++k)
+                    {
+                        double x = (m1.GetValue(i, k) * m1.GetValue(k, j));
+                        double y = m.GetValue(i, j) + x;
+                        m.SetValue(i, j, y);
+                    }
+
+            return m;
+        }
     }
 }
