@@ -8,19 +8,19 @@ namespace Rinex.Structures.Interfaces
 {
     interface IEpochData
     {
-        IGPSTime Time { get; }
-        int NumberOfSatelittes { get; }
-        char[] Prefix { get; }
-        int[] Prn { get; }
-        double[] Elevation { get; }
-        double[] TroposphericDelay { get; }
-        double[] C1 { get; }
-        int[] LossLock { get; }
-        double[] ClockOffsets { get; }
-        double ReceiverOffset { get; }
+        IGPSTime Time { get; set; }
+        int NumberOfSatelittes { get; set; }
+        char[] Prefix { get; set; }
+        int[] Prn { get; set; }
+        double[] Elevation { get; set; }
+        double[] TroposphericDelay { get; set; }
+        double[] C1 { get; set; }
+        int[] LossLock { get; set; }
+        double[] ClockOffsets { get; set; }
+        double ReceiverOffset { get; set; }
 
-        IPosition[] SatelittePosition { get; }
-        IPosition ReceiverPosition { get; }
+        IPosition[] SatelittePosition { get; set; }
+        IPosition ReceiverPosition { get; set; }
        
 
 
