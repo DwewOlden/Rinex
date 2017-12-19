@@ -407,6 +407,12 @@ namespace Rinex.Processing.Math
             }
         }
 
+        /// <summary>
+        /// Implemention of the modulus functions
+        /// </summary>
+        /// <param name="m1">The source matrix</param>
+        /// <param name="m2">The destination martrix</param>
+        /// <returns>A result matrix</returns>
         public static Matrix operator %(Matrix m1,Matrix m2)
         {
             int mr = m1.Rows;

@@ -12,10 +12,50 @@ namespace Rinex.Tests
     public class Matrix_Tests
     {
         [Test]
+        public void Matrix_Mod_Test()
+        {
+            Matrix m1 = Matrix_Test_Data.Is_Singular_Test_4();
+            Matrix mb = Matrix_Test_Data.Is_Singular_Test_4();
+
+            Matrix m = m1 % mb;
+
+            Assert.AreEqual(322, m.GetValue(0, 0));
+            Assert.AreEqual(318, m.GetValue(0, 1));
+            Assert.AreEqual(234, m.GetValue(0, 2));
+            Assert.AreEqual(375, m.GetValue(0, 3));
+            Assert.AreEqual(390, m.GetValue(0, 4));
+            Assert.AreEqual(133, m.GetValue(1, 0));
+            Assert.AreEqual(192, m.GetValue(1, 1));
+            Assert.AreEqual(45, m.GetValue(1, 2));
+            Assert.AreEqual(123, m.GetValue(1, 3));
+            Assert.AreEqual(75, m.GetValue(1, 4));
+            Assert.AreEqual(187, m.GetValue(2, 0));
+            Assert.AreEqual(300, m.GetValue(2, 1));
+            Assert.AreEqual(207, m.GetValue(2, 2));
+            Assert.AreEqual(339, m.GetValue(2, 3));
+            Assert.AreEqual(345, m.GetValue(2, 4));
+            Assert.AreEqual(135, m.GetValue(3, 0));
+            Assert.AreEqual(196, m.GetValue(3, 1));
+            Assert.AreEqual(51, m.GetValue(3, 2));
+            Assert.AreEqual(257, m.GetValue(3, 3));
+            Assert.AreEqual(85, m.GetValue(3, 4));
+            Assert.AreEqual(155, m.GetValue(4, 0));
+            Assert.AreEqual(236, m.GetValue(4, 1));
+            Assert.AreEqual(111, m.GetValue(4, 2));
+            Assert.AreEqual(1597, m.GetValue(4, 3));
+            Assert.AreEqual(185, m.GetValue(4, 4));
+
+
+
+
+        }
+
+
+        [Test]
         public void Matrix_IsSingular_Test_1()
         {
             Matrix m = Matrix_Test_Data.Is_Singular_Test_1();
-            Assert.AreEqual(false,m.IsSingular);
+            Assert.AreEqual(false, m.IsSingular);
         }
 
         [Test]
@@ -48,14 +88,14 @@ namespace Rinex.Tests
             Matrix m = new Matrix(4, 4);
             Matrix m2 = new Matrix(4, 4);
 
-            for (int i = 0;i<4;i++)
-                for (int j = 0;j<4;j++)
+            for (int i = 0; i < 4; i++)
+                for (int j = 0; j < 4; j++)
                 {
                     m.SetValue(i, j, (int)i);
                     m2.SetValue(i, j, (int)i);
                 }
 
-            Assert.AreEqual(m, m2); 
+            Assert.AreEqual(m, m2);
         }
 
         [Test]
@@ -68,7 +108,7 @@ namespace Rinex.Tests
                 for (int j = 0; j < 4; j++)
                 {
                     m.SetValue(i, j, (int)i);
-                    m2.SetValue(i, j, (int)i*2);
+                    m2.SetValue(i, j, (int)i * 2);
                 }
 
             Assert.AreNotEqual(m, m2);
@@ -113,7 +153,7 @@ namespace Rinex.Tests
 
             for (int i = 0; i < 100; i++)
                 for (int j = 0; j < 100; j++)
-                    Assert.AreEqual(((i+j)*2), m3.GetValue(i, j));
+                    Assert.AreEqual(((i + j) * 2), m3.GetValue(i, j));
         }
 
         [Test]
@@ -173,8 +213,8 @@ namespace Rinex.Tests
             Matrix m1 = new Matrix(3, 3);
             Matrix m2 = new Matrix(3, 3);
 
-            for (int i = 0;i<3;i++)
-                for (int j = 0;j<3;j++)
+            for (int i = 0; i < 3; i++)
+                for (int j = 0; j < 3; j++)
                 {
                     m1.SetValue(i, j, i + 1);
                     m2.SetValue(i, j, i + 1);
@@ -240,7 +280,7 @@ namespace Rinex.Tests
             Assert.AreEqual(17, m3.GetValue(3, 0));
             Assert.AreEqual(102, m3.GetValue(3, 1));
             Assert.AreEqual(107, m3.GetValue(3, 2));
-            
+
         }
 
         [Test]
@@ -254,7 +294,7 @@ namespace Rinex.Tests
             Assert.AreEqual(26, m3.GetValue(0, 0));
             Assert.AreEqual(24, m3.GetValue(0, 1));
             Assert.AreEqual(36, m3.GetValue(1, 0));
-            Assert.AreEqual(34, m3.GetValue(1, 1));   
+            Assert.AreEqual(34, m3.GetValue(1, 1));
         }
 
         [Test]
@@ -263,8 +303,8 @@ namespace Rinex.Tests
             Matrix m1 = Matrix_Test_Data.Get_Multiplication_Matrix4();
             Matrix m2 = m1.Transpose();
 
-            Assert.AreEqual(2,m2.GetValue(0, 0));
-            Assert.AreEqual(3,m2.GetValue(0, 1));
+            Assert.AreEqual(2, m2.GetValue(0, 0));
+            Assert.AreEqual(3, m2.GetValue(0, 1));
             Assert.AreEqual(2, m2.GetValue(0, 2));
             Assert.AreEqual(3, m2.GetValue(0, 3));
             Assert.AreEqual(3, m2.GetValue(1, 0));
@@ -292,7 +332,7 @@ namespace Rinex.Tests
         [Test]
         public void Matrix_CholeskiInverse_Test_1()
         {
-           
+
             Matrix m = Matrix_Test_Data.Get_Inverse_Matrix_1();
             Matrix m2 = m.CholeskiInverse();
 
