@@ -50,6 +50,10 @@ namespace Rinex.Structures
             {
                 return Prn_;
             }
+            set
+            {
+                Prn_ = value;
+            }
         }
 
         /// <summary>
@@ -60,6 +64,10 @@ namespace Rinex.Structures
             get
             {
                 return Toc_;
+            }
+            set
+            {
+                Toc_ = value;
             }
         }
 
@@ -72,10 +80,14 @@ namespace Rinex.Structures
             {
                 return Af0_;
             }
+            set
+            {
+                Af0_ = value;
+            }
         }
 
         /// <summary>
-        /// clock correction drift (secs/secs)
+        /// Clock correction drift (secs/secs)
         /// </summary>
         public double Af1
         {
@@ -83,10 +95,14 @@ namespace Rinex.Structures
             {
                 return af1_;
             }
+            set
+            {
+                af1_ = value;
+            }
         }
 
         /// <summary>
-        /// clock correction drift (secs/secs*secs)
+        /// Clock correction drift (secs/secs*secs)
         /// </summary>
         public double Af2
         {
@@ -94,10 +110,14 @@ namespace Rinex.Structures
             {
                 return Af2_;
             }
+            set
+            {
+                Af2_ = value;
+            }
         }
 
         /// <summary>
-        /// clock correction drift (secs/secs*secs)
+        /// Clock correction drift (secs/secs*secs)
         /// </summary>
         public double Aode
         {
@@ -105,10 +125,14 @@ namespace Rinex.Structures
             {
                 return Aode_;
             }
+            set
+            {
+                Aode_ = value;
+            }
         }
 
         /// <summary>
-        /// age of data ephemeris
+        /// Age of data ephemeris
         /// </summary>
         public double Crs
         {
@@ -116,10 +140,14 @@ namespace Rinex.Structures
             {
                 return Crs_;
             }
+            set
+            {
+                Crs_ = value;
+            }
         }
 
         /// <summary>
-        /// mean motion difference
+        /// Mean motion difference
         /// </summary>
         public double Delta_n
         {
@@ -127,10 +155,14 @@ namespace Rinex.Structures
             {
                 return delta_n_;
             }
+            set
+            {
+                delta_n_ = value;
+            }
         }
 
         /// <summary>
-        /// orbit perturbation parameter
+        /// Orbit perturbation parameter
         /// </summary>
         public double Mo
         {
@@ -138,10 +170,14 @@ namespace Rinex.Structures
             {
                 return mo_;
             }
+            set
+            {
+                mo_ = value;
+            }
         }
 
         /// <summary>
-        /// orbit perturbation parameter
+        /// Orbit perturbation parameter
         /// </summary>
         public double Cuc
         {
@@ -149,16 +185,24 @@ namespace Rinex.Structures
             {
                 return Cuc_;
             }
+            set
+            {
+                Cuc_ = value;
+            }
         }
 
         /// <summary>
-        /// eccentricity
+        /// Eccentricity
         /// </summary>
         public double E
         {
             get
             {
                 return E_;
+            }
+            set
+            {
+                E_ = value;
             }
         }
 
@@ -171,6 +215,10 @@ namespace Rinex.Structures
             {
                 return Cus_;
             }
+            set
+            {
+                Cus_ = value;
+            }
         }
         
         /// <summary>
@@ -181,6 +229,10 @@ namespace Rinex.Structures
             get
             {
                 return Sqrt_a_;
+            }
+            set
+            {
+                Sqrt_a_ = value;
             }
         }
 
@@ -193,6 +245,10 @@ namespace Rinex.Structures
             {
                 return Toe_;
             }
+            set
+            {
+                Toe_ = value;
+            }
         }
 
         /// <summary>
@@ -203,6 +259,10 @@ namespace Rinex.Structures
             get
             {
                 return Cic_;
+            }
+            set
+            {
+                Cic_ = value;
             }
         }
 
@@ -215,6 +275,10 @@ namespace Rinex.Structures
             {
                 return Omega0_;
             }
+            set
+            {
+                Omega0_ = value;
+            }
         }
 
         /// <summary>
@@ -225,6 +289,10 @@ namespace Rinex.Structures
             get
             {
                 return Cis_;
+            }
+            set
+            {
+                Cis_ = value;
             }
         }
 
@@ -237,6 +305,10 @@ namespace Rinex.Structures
             {
                 return Io_;
             }
+            set
+            {
+                Io_ = value;
+            }
         }
 
         /// <summary>
@@ -247,6 +319,10 @@ namespace Rinex.Structures
             get
             {
                 return Crc_;
+            }
+            set
+            {
+                Crc_ = value;
             }
         }
 
@@ -259,6 +335,10 @@ namespace Rinex.Structures
             {
                 return Omega_;
             }
+            set
+            {
+                Omega_ = value;
+            }
         }
 
         /// <summary>
@@ -270,6 +350,10 @@ namespace Rinex.Structures
             {
                 return OmegaDot_;
             }
+            set
+            {
+                OmegaDot_ = value;
+            }
         }
 
         /// <summary>
@@ -280,6 +364,10 @@ namespace Rinex.Structures
             get
             {
                 return IDot_;
+            }
+            set
+            {
+                IDot_ = value;
             }
 
         }
@@ -293,6 +381,10 @@ namespace Rinex.Structures
             {
                 return CodeL2_;
             }
+            set
+            {
+                CodeL2_ = value;
+            }
         }
 
         /// <summary>
@@ -303,6 +395,10 @@ namespace Rinex.Structures
             get
             {
                 return GpsWeek_;
+            }
+            set
+            {
+                GpsWeek_ = value;
             }
         }
 
@@ -315,6 +411,10 @@ namespace Rinex.Structures
             {
                 return L2Flag_;
             }
+            set
+            {
+                L2Flag_ = value;
+            }
         }
 
         /// <summary>
@@ -325,6 +425,10 @@ namespace Rinex.Structures
             get
             {
                 return Ura_;
+            }
+            set
+            {
+                Ura_ = value;
             }
         }
 
@@ -337,6 +441,10 @@ namespace Rinex.Structures
             {
                 return SvHealth_;
             }
+            set
+            {
+                SvHealth_ = value;
+            }
         }
 
         /// <summary>
@@ -347,6 +455,10 @@ namespace Rinex.Structures
             get
             {
                 return Tgd_;
+            }
+            set
+            {
+                Tgd_ = value;
             }
         }
 
@@ -359,6 +471,10 @@ namespace Rinex.Structures
             {
                 return Aodc_;
             }
+            set
+            {
+                Aodc_ = value;
+            }
         }
 
         /// <summary>
@@ -370,6 +486,38 @@ namespace Rinex.Structures
             {
                 return Ttom_;
             }
+            set
+            {
+                Ttom_ = value;
+            }
+        }
+
+        public override string ToString()
+        {
+            return string.Format("GPS Week:{0} GPS Seconds:{1} Sat:{2}", Toc_.GPSWeek, Toc_.GPSSeconds, Prn_);
+        }
+
+        public override int GetHashCode()
+        {
+            return Toc_.GetHashCode() + Prn_;
+        }
+
+        public override bool Equals(object obj)
+        {
+            if (obj == null)
+                return false;
+            else if (obj.GetType() != this.GetType())
+                return false;
+            else
+            {
+                Ephemeris e = (Ephemeris)obj;
+                if ((e.Toc_ == this.Toc_) && (e.Prn_ == this.Prn_))
+                    return true;
+                else
+                    return false;
+            }
+
+
         }
     }
 }
