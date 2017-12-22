@@ -48,7 +48,9 @@
     <Compile Include="Interfaces\IEphemeris.cs" />
     <Compile Include="Interfaces\IEpochData.cs" />
     <Compile Include="Interfaces\IGPSTime.cs" />
+    <Compile Include="Interfaces\IObservationHeader.cs" />
     <Compile Include="Interfaces\IPosition.cs" />
+    <Compile Include="ObservationHeader.cs" />
     <Compile Include="Position.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
