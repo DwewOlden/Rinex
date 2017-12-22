@@ -13,7 +13,7 @@ namespace Rinex.IO.Interface
 
         bool GetReader(string pFilename);
 
-        bool ReadLine(out string pLine);
+        string ReadLine();
 
         bool CloseAndDispose();
     }

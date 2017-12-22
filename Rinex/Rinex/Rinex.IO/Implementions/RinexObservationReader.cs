@@ -1,4 +1,6 @@
 ﻿using Rinex.IO.Interface;
+using Rinex.Structures;
+using Rinex.Structures.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -57,19 +59,30 @@ namespace Rinex.IO.Implementions
         /// </summary>
         /// <param name="pFilename">The name of the file</param>
         /// <returns>True if the file could be read</returns>
-        public bool ReadObservationFileHeader(string pFilename)
+        public IObservationHeader ReadObservationFileHeader(string pFilename)
         {
             mFilename_ = pFilename;
             return ReadObservationFileHeader();
         }
 
-        public bool ReadObservationFileHeader()
+        public IObservationHeader ReadObservationFileHeader()
         {
             if (!mFileSupport_.FileExists(mFilename_))
-                return false;
+                return null;
 
             if (!mFileSupport_.GetReader(mFilename_))
-                return false;
+                return null;
+
+            IObservationHeader lHeader_ = new ObservationHeader();
+
+            string line = string.Empty;
+            while (line !=null)
+            {
+
+
+                line = mFileSupport_.ReadLine();
+            }
+            
 
 
         }

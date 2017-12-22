@@ -48,5 +48,11 @@
     <Compile Include="RinexString.cs" />
     <Compile Include="Support\FileSupport.cs" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Rinex.Structures\Rinex.Structures.csproj">
+      <Project>{6CDB7B28-626A-438A-9BBE-C5924A37091C}</Project>
+      <Name>Rinex.Structures</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

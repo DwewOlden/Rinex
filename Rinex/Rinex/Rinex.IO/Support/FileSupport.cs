@@ -66,13 +66,9 @@ namespace Rinex.IO.Support
             return true;
         }
 
-        public bool ReadLine(out string pLine)
+        public string ReadLine()
         {
-            pLine = mReader_.ReadLine();
-            if (pLine == null)
-                return false;
-
-            return true;
+            return mReader_.ReadLine();         
         }
     }
 }

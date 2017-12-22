@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Rinex.Structures.Interfaces;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -8,7 +9,7 @@ namespace Rinex.IO.Interface
 {
     public interface IObservations
     {
-        bool ReadObservationFileHeader();
+        IObservationHeader ReadObservationFileHeader();
 
         string Filename { get; set; }
     }
