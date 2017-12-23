@@ -23,7 +23,15 @@ namespace Rinex.IO.Support
         /// <remarks>Strictly speaking this is not a posistion, but for conviniaence we are using the structures</remarks>
         public IPosition ParseAntennaDelta(string pLine)
         {
-            throw new NotImplementedException();
+            string p1 = pLine.Substring(0, 14);
+            string p2 = pLine.Substring(14, 14);
+            string p3 = pLine.Substring(28, 42);
+
+            Double.TryParse(p1.Trim(), out double d1);
+            Double.TryParse(p2.Trim(), out double d2);
+            Double.TryParse(p3.Trim(), out double d3);
+
+            return new Position(d1, d2, d3);
         }
 
         /// <summary>
@@ -33,7 +41,15 @@ namespace Rinex.IO.Support
         /// <returns>The apprxomate position of the reciever</returns>
         public IPosition ParseApproximatePosistion(string pLine)
         {
-            throw new NotImplementedException();
+            string p1 = pLine.Substring(0, 14);
+            string p2 = pLine.Substring(14, 14);
+            string p3 = pLine.Substring(28, 42);
+
+            Double.TryParse(p1.Trim(), out double d1);
+            Double.TryParse(p2.Trim(), out double d2);
+            Double.TryParse(p3.Trim(), out double d3);
+
+            return new Position(d1, d2, d3);
         }
 
         /// <summary>
@@ -41,9 +57,49 @@ namespace Rinex.IO.Support
         /// </summary>
         /// <param name="pLine">The line to be parsed</param>
         /// <returns>An array containing the types of signal being observation</returns>
-        public string[] ParseSignalTypes(string pLine)
+        public int[] ParseSignalTypes(string pLine)
         {
-            throw new NotImplementedException();
+            string pTypesNumber = pLine.Substring(0, 6).Trim();
+
+            if (!Int32.TryParse(pTypesNumber, out int NumberOfTypes))
+                throw new ArgumentOutOfRangeException("numtypes", "unable to determine the number of types");
+
+            int[] types = new int[NumberOfTypes];
+
+            for (int i = 0; i < NumberOfTypes; i++)
+            {
+                string nextType = pLine.Substring(6 * (i + 2), 2);
+
+                switch (nextType)
+                {
+                    case "C1":
+                        types[i] = 0;
+                        break;
+                    case "C2":
+                        types[i] = 1;
+                        break;
+                    case "P1":
+                        types[i] = 2;
+                        break;
+                    case "P2":
+                        types[i] = 3;
+                        break;
+                    case "L1":
+                        types[i] = 4;
+                        break;
+                    case "L2":
+                        types[i] = 5;
+                        break;
+                    case "S1":
+                        types[i] = 6;
+                        break;
+                    case "S2":
+                        types[i] = 7;
+                        break;
+                }
+            }
+
+            return types;
         }
 
         /// <summary>
@@ -53,7 +109,15 @@ namespace Rinex.IO.Support
         /// <returns>A time object populated with the information parsed from the observation header</returns>
         public IGPSTime ParseTimeOfFirstObservation(string pLine)
         {
-            throw new NotImplementedException();
+            string lLine = pLine.Substring(0, 42);
+
+            while (lLine.Contains("  "))
+                lLine = lLine.Replace("  ", " ");
+
+            if (DateTime.TryParse(lLine, out DateTime d))
+                return new GPSTime(d);
+            else
+                throw new ArgumentOutOfRangeException("firstdate", "unable to extract the date time from the string");
         }
     }
 }

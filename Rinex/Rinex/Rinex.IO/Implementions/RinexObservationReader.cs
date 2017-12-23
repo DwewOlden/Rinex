@@ -82,6 +82,9 @@ namespace Rinex.IO.Implementions
 
                 line = mFileSupport_.ReadLine();
             }
+
+            // This is compile but not run, just a holding element
+            return new ObservationHeader();
             
 
 

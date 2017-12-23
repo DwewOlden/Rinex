@@ -10,7 +10,7 @@ namespace Rinex.IO.Interface
 {
     public interface IRinexObservationHeaderParser
     {
-        string[] ParseSignalTypes(string pLine);
+        int[] ParseSignalTypes(string pLine);
 
         IGPSTime ParseTimeOfFirstObservation(string pLine);
 
