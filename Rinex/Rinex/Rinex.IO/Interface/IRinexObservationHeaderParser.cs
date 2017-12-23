@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace Rinex.IO.Interface
 {
-    public interface IRinexObservationParser
+    public interface IRinexObservationHeaderParser
     {
         string[] ParseSignalTypes(string pLine);
 
