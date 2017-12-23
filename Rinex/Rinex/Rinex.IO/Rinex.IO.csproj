@@ -44,6 +44,7 @@
     <Compile Include="Implementions\RinexObservationReader.cs" />
     <Compile Include="Interface\IFileSupport.cs" />
     <Compile Include="Interface\IObservations.cs" />
+    <Compile Include="Interface\IRinexObservationParser.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="RinexString.cs" />
     <Compile Include="Support\FileSupport.cs" />
