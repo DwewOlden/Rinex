@@ -68,33 +68,33 @@ namespace Rinex.IO.Support
 
             for (int i = 0; i < NumberOfTypes; i++)
             {
-                string nextType = pLine.Substring(6 * (i + 2), 2);
+                string nextType = pLine.Substring(6 * (i + 2)-2, 2);
 
                 switch (nextType)
                 {
                     case "C1":
-                        types[i] = 0;
+                        types[i] = (int)SignalType.C1;
                         break;
                     case "C2":
-                        types[i] = 1;
+                        types[i] = (int)SignalType.C2;
                         break;
                     case "P1":
-                        types[i] = 2;
+                        types[i] = (int)SignalType.P1;
                         break;
                     case "P2":
-                        types[i] = 3;
+                        types[i] = (int)SignalType.P2;
                         break;
                     case "L1":
-                        types[i] = 4;
+                        types[i] = (int)SignalType.L1;
                         break;
                     case "L2":
-                        types[i] = 5;
+                        types[i] = (int)SignalType.L2;
                         break;
                     case "S1":
-                        types[i] = 6;
+                        types[i] = (int)SignalType.S1;
                         break;
                     case "S2":
-                        types[i] = 7;
+                        types[i] = (int)SignalType.S2;
                         break;
                 }
             }
@@ -120,4 +120,22 @@ namespace Rinex.IO.Support
                 throw new ArgumentOutOfRangeException("firstdate", "unable to extract the date time from the string");
         }
     }
+
+    /// <summary>
+    /// The intenral ordering of the signal types
+    /// </summary>
+    public enum SignalType
+    {
+        C1 = 0,
+        C2 = 1,
+        P1 = 2,
+        P2 = 3,
+        L1 = 4,
+        L2 = 5,
+        S1 = 6,
+        S2 = 7,
+        D1 = 8,
+        D2 = 9
+    }
+        
 }
