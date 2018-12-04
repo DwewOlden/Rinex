@@ -49,9 +49,11 @@
     <Compile Include="Interfaces\IEpochData.cs" />
     <Compile Include="Interfaces\IGPSTime.cs" />
     <Compile Include="Interfaces\IObservationHeader.cs" />
+    <Compile Include="Interfaces\IObserverAgency.cs" />
     <Compile Include="Interfaces\IPosition.cs" />
     <Compile Include="Interfaces\IProgramHeader.cs" />
     <Compile Include="Interfaces\IRinexHeader.cs" />
+    <Compile Include="ObserverAgency.cs" />
     <Compile Include="ProgramHeader.cs" />
     <Compile Include="RinexHeader.cs" />
     <Compile Include="ObservationHeader.cs" />

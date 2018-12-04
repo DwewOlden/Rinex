@@ -72,7 +72,36 @@ namespace Rinex.IO.Support
             return header;
         }
 
+        /// <summary>
+        /// Parse the marker text
+        /// </summary>
+        /// <param name="pLine">A line containing the marker text</param>
+        /// <returns>The raw marker text</returns>
+        public string ParseMarker(string pLine)
+        {
+            string marker = pLine.Substring(0, 60).TrimStart();
+            return marker;
+        }
 
+        public IObserverAgency ParseObservationHeader(string pLine)
+        {
+            string versionString = pLine.Substring(0, 9).TrimStart();
+
+            IObserverAgency header = new ObserverAgency
+            {
+                Oberver = pLine.Substring(0, 20).Trim(),
+                Agency = pLine.Substring(20, 40).Trim(),
+               
+            };
+
+            return header;
+        }
+
+        /// <summary>
+        /// Parse the program header
+        /// </summary>
+        /// <param name="pLine">A line from the Rinex header</param>
+        /// <returns>A instance of the header yexy</returns>
         public IProgramHeader ParseProgramHeader(string pLine)
         {
             string versionString = pLine.Substring(0, 9).TrimStart();
