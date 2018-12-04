@@ -91,7 +91,6 @@ namespace Rinex.IO.Support
             {
                 Oberver = pLine.Substring(0, 20).Trim(),
                 Agency = pLine.Substring(20, 40).Trim(),
-               
             };
 
             return header;
@@ -183,6 +182,11 @@ namespace Rinex.IO.Support
                 return new GPSTime(d);
             else
                 throw new ArgumentOutOfRangeException("firstdate", "unable to extract the date time from the string");
+        }
+
+        IObservationHeader IRinexObservationHeaderParser.ParseObservationHeader(string pLine)
+        {
+            throw new NotImplementedException();
         }
     }
 

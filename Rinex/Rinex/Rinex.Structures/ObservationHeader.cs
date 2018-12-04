@@ -9,67 +9,38 @@ namespace Rinex.Structures
 {
     public class ObservationHeader : IObservationHeader
     {
-        /// <summary>
-        /// The date and time of the first observation
-        /// </summary>
-        private DateTime mFirst_;
 
-        /// <summary>
-        /// The approximate first position
-        /// </summary>
-        private IPosition mApprox_;
+        
+        public IProgramHeader ProgramHeader { get; set; }
 
-        /// <summary>
-        /// The approximate antenna delta (offset)
-        /// </summary>
-        private IPosition mDelta_;
+
+        public IObserverAgency ObserverAgency { get; set; }
 
         /// <summary>
         /// The date and time of the first observation
         /// </summary>
-        public DateTime FirstObservation
-        {
-            get
-            {
-                return mFirst_;
-            }
-            set
-            {
-                mFirst_ = value;
-            }
-        }
+        public DateTime FirstObservation { get; set; }
 
         /// <summary>
         /// The approximate first position
         /// </summary>
-        public IPosition ApproximatePosition
-        {
-            get
-            {
-                return mApprox_;
-            }
-
-            set
-            {
-                mApprox_ = value;
-            }
-        }
+        public IPosition ApproximatePosition { get; set; }
 
         /// <summary>
         /// The approximate antenna delta (offset)
         /// </summary>
-        public IPosition AntennaDelta
-        {
-            get
-            {
-                return mDelta_;
-            }
-            set
-            {
-                mDelta_ = value;
-            }
-        }
+        public IPosition AntennaDelta { get; set; }
 
+        /// <summary>
+        /// A list of signal types
+        /// </summary>
+        public int[] SignalTypes { get; set; }
+
+        /// <summary>
+        /// Information from the rinex file
+        /// </summary>
+        public IRinexHeader RinexHeader { get; set;  }
+        
         /// <summary>
         /// Default constructor
         /// </summary>
@@ -80,14 +51,14 @@ namespace Rinex.Structures
 
         public ObservationHeader(DateTime pDateTime,IPosition pApproximate,IPosition pDelta)
         {
-            mFirst_ = pDateTime;
-            mDelta_ = pDelta;
-            mApprox_ = pApproximate;
+            FirstObservation = pDateTime;
+            AntennaDelta = pDelta;
+            ApproximatePosition = pApproximate;
         }
 
         public override int GetHashCode()
         {
-            return (int)mFirst_.TimeOfDay.Ticks;
+            return (int)FirstObservation.TimeOfDay.Ticks;
         }
 
         public override bool Equals(object obj)
@@ -99,7 +70,7 @@ namespace Rinex.Structures
             else
             {
                 ObservationHeader h = (ObservationHeader)obj;
-                if ((h.mFirst_ == this.mFirst_) && (h.mDelta_ == this.mDelta_) && (h.mApprox_ == this.mApprox_))
+                if ((h.FirstObservation == this.FirstObservation) && (h.AntennaDelta == this.AntennaDelta) && (h.ApproximatePosition == this.ApproximatePosition))
                     return true;
                 else
                     return false;
@@ -108,7 +79,7 @@ namespace Rinex.Structures
 
         public override string ToString()
         {
-            return string.Format("First Date:{0} Approximate:{1} Antenna:{2}", mFirst_.ToString(), mApprox_.ToString(), mDelta_.ToString());
+            return string.Format("First Date:{0} Approximate:{1} Antenna:{2}", FirstObservation.ToString(), ApproximatePosition.ToString(), AntennaDelta.ToString());
         }
     }
 }

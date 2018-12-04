@@ -13,6 +13,14 @@ namespace Rinex.Structures.Interfaces
         IPosition ApproximatePosition { get; set; }
 
         IPosition AntennaDelta { get; set; }
-    
+
+        IProgramHeader ProgramHeader { get; set; }
+
+        IObserverAgency ObserverAgency { get; set; }
+
+        int[] SignalTypes { get; set; }
+
+        IRinexHeader RinexHeader { get; set; }
+
     }
 }
