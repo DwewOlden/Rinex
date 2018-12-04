@@ -52,6 +52,7 @@ namespace Rinex.IO.Support
             return new Position(d1, d2, d3);
         }
 
+
         /// <summary>
         /// Extracts the header information 
         /// </summary>
@@ -61,13 +62,31 @@ namespace Rinex.IO.Support
         {
             string versionString = pLine.Substring(0, 9).TrimStart();
 
-            IRinexHeader header = new RinexHeader();
-            header.FileVersion = Convert.ToDouble(versionString);
-            header.FileType = pLine.Substring(20, 19).Trim();
-            header.SatelliteSystem = pLine.Substring(40, 19).Trim();
+            IRinexHeader header = new RinexHeader
+            {
+                FileVersion = Convert.ToDouble(versionString),
+                FileType = pLine.Substring(20, 19).Trim(),
+                SatelliteSystem = pLine.Substring(40, 19).Trim()
+            };
 
             return header;
         }
+
+
+        public IProgramHeader ParseProgramHeader(string pLine)
+        {
+            string versionString = pLine.Substring(0, 9).TrimStart();
+
+            IProgramHeader header = new ProgramHeader
+            {
+                ProgramName = pLine.Substring(0, 20),
+                Agency = pLine.Substring(20, 19).Trim(),
+                CreationDate = pLine.Substring(40, 19).Trim()
+            };
+
+            return header;
+        }
+
 
         /// <summary>
         /// Extracts the types of signal being recieved by the transmitter

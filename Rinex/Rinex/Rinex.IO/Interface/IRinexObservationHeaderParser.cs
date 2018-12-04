@@ -19,5 +19,7 @@ namespace Rinex.IO.Interface
         IPosition ParseAntennaDelta(string pLine);
 
         IRinexHeader ParseHeaderInformation(string pLine);
+
+        IProgramHeader ParseProgramHeader(string pLine);
     }
 }

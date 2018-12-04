@@ -11,17 +11,23 @@ namespace Rinex.IO.Tests
     [TestFixture]
     public class Observation_Parser_Tests
     {
+        [Test]
+        public void Test_Program_Header_Line()
+        {
+            string line = "Fastrax Rinex v 1.10                                        PGM / RUN BY / DATE ";
+            Rinex.IO.Interface.IRinexObservationHeaderParser p = new Rinex.IO.Support.RinexObservationHeaderParser();
+            IProgramHeader output = p.ParseProgramHeader(line);
+        }
+
 
         [Test]
-        public void Test_Obervation_Headere_Line()
+        public void Test_Obervation_Header_Line()
         {
             string line = "     2.10           O                   G                   RINEX VERSION / TYPE";
             Rinex.IO.Interface.IRinexObservationHeaderParser p = new Rinex.IO.Support.RinexObservationHeaderParser();
             IRinexHeader output = p.ParseHeaderInformation(line);
-
         }
-
-
+        
         [Test]
         public void Test_Types_Parsing_1()
         {
