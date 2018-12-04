@@ -53,6 +53,23 @@ namespace Rinex.IO.Support
         }
 
         /// <summary>
+        /// Extracts the header information 
+        /// </summary>
+        /// <param name="pLine">The line to be parsed</param>
+        /// <returns>A Rinex File Parser record</returns>
+        public IRinexHeader ParseHeaderInformation(string pLine)
+        {
+            string versionString = pLine.Substring(0, 9).TrimStart();
+
+            IRinexHeader header = new RinexHeader();
+            header.FileVersion = Convert.ToDouble(versionString);
+            header.FileType = pLine.Substring(20, 19).Trim();
+            header.SatelliteSystem = pLine.Substring(40, 19).Trim();
+
+            return header;
+        }
+
+        /// <summary>
         /// Extracts the types of signal being recieved by the transmitter
         /// </summary>
         /// <param name="pLine">The line to be parsed</param>
@@ -68,7 +85,7 @@ namespace Rinex.IO.Support
 
             for (int i = 0; i < NumberOfTypes; i++)
             {
-                string nextType = pLine.Substring(6 * (i + 2)-2, 2);
+                string nextType = pLine.Substring(6 * (i + 2) - 2, 2);
 
                 switch (nextType)
                 {
@@ -137,5 +154,5 @@ namespace Rinex.IO.Support
         D1 = 8,
         D2 = 9
     }
-        
+
 }

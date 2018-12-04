@@ -53,6 +53,10 @@
       <Project>{fbb31132-4c79-46e9-9607-7a36ace1f739}</Project>
       <Name>Rinex.IO</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Rinex.Structures\Rinex.Structures.csproj">
+      <Project>{6CDB7B28-626A-438A-9BBE-C5924A37091C}</Project>
+      <Name>Rinex.Structures</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
