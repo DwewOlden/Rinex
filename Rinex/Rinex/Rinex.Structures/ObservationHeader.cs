@@ -40,7 +40,12 @@ namespace Rinex.Structures
         /// Information from the rinex file
         /// </summary>
         public IRinexHeader RinexHeader { get; set;  }
-        
+
+        /// <summary>
+        /// A string representing the marker
+        /// </summary>
+        public string Marker { get; set; }
+
         /// <summary>
         /// Default constructor
         /// </summary>

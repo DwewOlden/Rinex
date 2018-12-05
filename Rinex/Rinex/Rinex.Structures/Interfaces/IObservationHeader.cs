@@ -22,5 +22,9 @@ namespace Rinex.Structures.Interfaces
 
         IRinexHeader RinexHeader { get; set; }
 
+        /// <summary>
+        /// A string representing the marker
+        /// </summary>
+        string Marker { get; set; }
     }
 }

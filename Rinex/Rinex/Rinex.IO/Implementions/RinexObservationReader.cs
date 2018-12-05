@@ -1,4 +1,6 @@
-﻿using Rinex.IO.Interface;
+﻿using Rinex.IO.Constants;
+using Rinex.IO.Interface;
+using Rinex.IO.Support;
 using Rinex.Structures;
 using Rinex.Structures.Interfaces;
 using System;
@@ -24,7 +26,12 @@ namespace Rinex.IO.Implementions
         /// A file support object
         /// </summary>
         private IFileSupport mFileSupport_;
-      
+
+        /// <summary>
+        /// An instance of the observation header parser
+        /// </summary>
+        private IRinexObservationHeaderParser mObservationHeaderParser;
+
         /// <summary>
         /// The name of the file containing the observation information
         /// </summary>
@@ -50,6 +57,7 @@ namespace Rinex.IO.Implementions
         public RinexObservationReader(IFileSupport pFileSupport)
         {
             mFileSupport_ = pFileSupport;
+            mObservationHeaderParser = new RinexObservationHeaderParser();
         }
 
 
@@ -67,26 +75,61 @@ namespace Rinex.IO.Implementions
 
         public IObservationHeader ReadObservationFileHeader()
         {
-            if (!mFileSupport_.FileExists(mFilename_))
-                return null;
-
-            if (!mFileSupport_.GetReader(mFilename_))
-                return null;
-
             IObservationHeader lHeader_ = new ObservationHeader();
 
             string line = string.Empty;
             while (line !=null)
             {
+                if (line.Contains(RinexIOConstant.EndOfHeader))
+                    continue;
 
-
+                ParseLine(line,ref lHeader_);
+                
                 line = mFileSupport_.ReadLine();
             }
 
-            
-            
+            return lHeader_;
+        }
 
+        /// <summary>
+        /// Parses a line adding the contents to the observation header
+        /// </summary>
+        /// <param name="line">A string from the header</param>
+        /// <param name="observationHeader">The observation header</param>
+        private void ParseLine(string line,ref IObservationHeader observationHeader)
+        {
+            if (line.Contains(RinexIOConstant.AntennaDelta))
+                observationHeader.AntennaDelta = mObservationHeaderParser.ParseAntennaDelta(line);
 
+            if (line.Contains(RinexIOConstant.ApproximatePosition))
+                observationHeader.ApproximatePosition = mObservationHeaderParser.ParseApproximatePosistion(line);
+
+            if (line.Contains(RinexIOConstant.MarkerName))
+                observationHeader.Marker = mObservationHeaderParser.ParseMarker(line);
+
+            if (line.Contains(RinexIOConstant.ObserverationTypes))
+                observationHeader.SignalTypes = mObservationHeaderParser.ParseSignalTypes(line);
+
+            if (line.Contains(RinexIOConstant.ProgramInformation))
+                observationHeader.ProgramHeader = mObservationHeaderParser.ParseProgramHeader(line);
+
+            if (line.Contains(RinexIOConstant.RinexVersion))
+                observationHeader.RinexHeader = mObservationHeaderParser.ParseHeaderInformation(line);
+        }
+
+        /// <summary>
+        /// Determines if a file is valie
+        /// </summary>
+        /// <returns>True if the file details can be found, false if they cannot</returns>
+        private bool FileIsValid()
+        {
+            if (!mFileSupport_.FileExists(mFilename_))
+                return false;
+
+            if (!mFileSupport_.GetReader(mFilename_))
+                return false;
+
+            return true;
         }
     }
 }
