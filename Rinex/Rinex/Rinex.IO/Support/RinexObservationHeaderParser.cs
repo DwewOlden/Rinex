@@ -184,7 +184,7 @@ namespace Rinex.IO.Support
                 throw new ArgumentOutOfRangeException("firstdate", "unable to extract the date time from the string");
         }
 
-        IObservationHeader IRinexObservationHeaderParser.ParseObservationHeader(string pLine)
+        IRinexObservationHeader IRinexObservationHeaderParser.ParseObservationHeader(string pLine)
         {
             throw new NotImplementedException();
         }

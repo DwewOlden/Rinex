@@ -4,15 +4,16 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{FBB31132-4C79-46E9-9607-7A36ACE1F739}</ProjectGuid>
-    <OutputType>Library</OutputType>
-    <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Rinex.IO</RootNamespace>
-    <AssemblyName>Rinex.IO</AssemblyName>
+    <ProjectGuid>{C06E0CE2-025F-464B-A2D0-300DCBFC9724}</ProjectGuid>
+    <OutputType>Exe</OutputType>
+    <RootNamespace>Rinex.Test.Console</RootNamespace>
+    <AssemblyName>Rinex.Test.Console</AssemblyName>
     <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
@@ -22,6 +23,7 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
     <OutputPath>bin\Release\</OutputPath>
@@ -40,21 +42,16 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Constants\RinexIOConstant.cs" />
-    <Compile Include="Implementions\RinexObservationReader.cs" />
-    <Compile Include="Interface\IFileSupport.cs" />
-    <Compile Include="Interface\IRinexFileObservationReader.cs" />
-    <Compile Include="Interface\RinexObservations\IRinexObservationFileContents.cs" />
-    <Compile Include="Interface\RinexObservations\IRinexObservationHeaderParser.cs" />
+    <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="RinexString.cs" />
-    <Compile Include="Support\FileSupport.cs" />
-    <Compile Include="Support\RinexObservationHeaderParser.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Rinex.Structures\Rinex.Structures.csproj">
-      <Project>{6CDB7B28-626A-438A-9BBE-C5924A37091C}</Project>
-      <Name>Rinex.Structures</Name>
+    <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Rinex.IO\Rinex.IO.csproj">
+      <Project>{fbb31132-4c79-46e9-9607-7a36ace1f739}</Project>
+      <Name>Rinex.IO</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

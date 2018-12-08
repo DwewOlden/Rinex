@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Rinex.Structures.Interfaces
 {
-    public interface IObservationHeader
+    public interface IRinexObservationHeader
     {
         DateTime FirstObservation { get; set; }
 

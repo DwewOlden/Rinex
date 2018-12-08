@@ -7,9 +7,9 @@ using System.Threading.Tasks;
 
 namespace Rinex.IO.Interface
 {
-    public interface IObservations
+    public interface IRinexObervationFileContents
     {
-        IObservationHeader ReadObservationFileHeader();
+        IRinexObservationHeader Header();
 
         string Filename { get; set; }
     }

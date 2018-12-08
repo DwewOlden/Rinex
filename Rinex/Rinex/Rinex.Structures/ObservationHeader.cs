@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Rinex.Structures
 {
-    public class ObservationHeader : IObservationHeader
+    public class ObservationHeader : IRinexObservationHeader
     {
 
         

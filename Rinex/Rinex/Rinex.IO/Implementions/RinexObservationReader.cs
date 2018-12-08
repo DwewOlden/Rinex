@@ -1,5 +1,6 @@
 ﻿using Rinex.IO.Constants;
 using Rinex.IO.Interface;
+using Rinex.IO.Interface.RinexObservations;
 using Rinex.IO.Support;
 using Rinex.Structures;
 using Rinex.Structures.Interfaces;
@@ -15,12 +16,12 @@ namespace Rinex.IO.Implementions
     /// <summary>
     /// Reads the information from the rinex observation file
     /// </summary>
-    public class RinexObservationReader : IObservations
+    public class RinexObservationReader : IRinexFileObservationReader
     {
         /// <summary>
-        /// The name of the file
+        /// The name of the file containing the observation information
         /// </summary>
-        private string mFilename_;
+        public string Filename { get;set;}
 
         /// <summary>
         /// A file support object
@@ -33,24 +34,6 @@ namespace Rinex.IO.Implementions
         private IRinexObservationHeaderParser mObservationHeaderParser;
 
         /// <summary>
-        /// The name of the file containing the observation information
-        /// </summary>
-        public string Filename
-        {
-            get
-            {
-                return mFilename_;
-            }
-            set
-            {
-                mFilename_ = value;
-
-            }
-        }
-        
-        
-
-        /// <summary>
         /// This should be considered the default constructor for the rinex reader
         /// </summary>
         /// <param name="pFilename">The name of the file</param>
@@ -60,6 +43,19 @@ namespace Rinex.IO.Implementions
             mObservationHeaderParser = new RinexObservationHeaderParser();
         }
 
+        /// <summary>
+        /// Reads the contents from the file.
+        /// </summary>
+        /// <returns>True if the file could be read succesfully.</returns>
+        public bool ReadFile()
+        {
+            mFileSupport_.Filename = Filename;
+            if (!FileIsValid())
+                throw new ArgumentException("filename", "there is an issue with file, check it exists at specified path");
+
+            return true;
+        }
+
 
         /// <summary>
         /// Opens the file and reads the header. The file will be left open ready for the 
@@ -67,36 +63,32 @@ namespace Rinex.IO.Implementions
         /// </summary>
         /// <param name="pFilename">The name of the file</param>
         /// <returns>True if the file could be read</returns>
-        public IObservationHeader ReadObservationFileHeader(string pFilename)
+        public IRinexObservationHeader ReadObservationFileHeader(string pFilename)
         {
-            mFilename_ = pFilename;
-            return ReadObservationFileHeader();
-        }
-
-        public IObservationHeader ReadObservationFileHeader()
-        {
-            IObservationHeader lHeader_ = new ObservationHeader();
+            IRinexObservationHeader lHeader_ = new ObservationHeader();
 
             string line = string.Empty;
-            while (line !=null)
+            while (line != null)
             {
                 if (line.Contains(RinexIOConstant.EndOfHeader))
                     continue;
 
-                ParseLine(line,ref lHeader_);
-                
+                ParseLine(line, ref lHeader_);
+
                 line = mFileSupport_.ReadLine();
             }
 
             return lHeader_;
+            
         }
+
 
         /// <summary>
         /// Parses a line adding the contents to the observation header
         /// </summary>
         /// <param name="line">A string from the header</param>
         /// <param name="observationHeader">The observation header</param>
-        private void ParseLine(string line,ref IObservationHeader observationHeader)
+        private void ParseLine(string line, ref IRinexObservationHeader observationHeader)
         {
             if (line.Contains(RinexIOConstant.AntennaDelta))
                 observationHeader.AntennaDelta = mObservationHeaderParser.ParseAntennaDelta(line);
@@ -123,10 +115,10 @@ namespace Rinex.IO.Implementions
         /// <returns>True if the file details can be found, false if they cannot</returns>
         private bool FileIsValid()
         {
-            if (!mFileSupport_.FileExists(mFilename_))
+            if (!mFileSupport_.FileExists(Filename))
                 return false;
 
-            if (!mFileSupport_.GetReader(mFilename_))
+            if (!mFileSupport_.GetReader(Filename))
                 return false;
 
             return true;

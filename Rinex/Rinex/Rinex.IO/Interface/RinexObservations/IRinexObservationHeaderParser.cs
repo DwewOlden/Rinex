@@ -24,6 +24,6 @@ namespace Rinex.IO.Interface
 
         string ParseMarker(string pLine);
 
-        IObservationHeader ParseObservationHeader(string pLine);
+        IRinexObservationHeader ParseObservationHeader(string pLine);
     }
 }

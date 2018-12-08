@@ -11,6 +11,11 @@ namespace Rinex.IO.Support
     public class FileSupport : IFileSupport
     {
         /// <summary>
+        /// The name of the file
+        /// </summary>
+        public string Filename { get; set; }
+
+        /// <summary>
         /// The reader that gets the information from the file
         /// </summary>
         private StreamReader mReader_;
@@ -45,6 +50,11 @@ namespace Rinex.IO.Support
                 return true;
             else
                 return false;
+        }
+
+        public bool FileExists()
+        {
+            throw new NotImplementedException();
         }
 
         /// <summary>
