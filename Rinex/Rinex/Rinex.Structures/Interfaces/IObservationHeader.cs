@@ -10,6 +10,8 @@ namespace Rinex.Structures.Interfaces
     {
         DateTime FirstObservation { get; set; }
 
+        DateTime LastObservation { get; set; }
+
         IPosition ApproximatePosition { get; set; }
 
         IPosition AntennaDelta { get; set; }

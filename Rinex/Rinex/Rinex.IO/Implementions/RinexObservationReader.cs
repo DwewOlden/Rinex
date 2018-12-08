@@ -111,7 +111,10 @@ namespace Rinex.IO.Implementions
                 observationHeader.RinexHeader = mObservationHeaderParser.ParseHeaderInformation(line);
 
             if (line.Contains(RinexIOConstant.TimeOfFirstObservation))
-                observationHeader.FirstObservation = mObservationHeaderParser.ParseTimeOfFirstObservation(line);
+                observationHeader.FirstObservation = mObservationHeaderParser.ParseObservationDateAndTime(line);
+
+            if (line.Contains(RinexIOConstant.TimeOfLastObservation))
+                observationHeader.LastObservation = mObservationHeaderParser.ParseObservationDateAndTime(line);
         }
 
         /// <summary>

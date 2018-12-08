@@ -9,37 +9,53 @@ namespace Rinex.Structures
 {
     public class ObservationHeader : IRinexObservationHeader
     {
-
-        
+        /// <summary>
+        /// The program header informaition
+        /// </summary>
         public IProgramHeader ProgramHeader { get; set; }
 
 
+        /// <summary>
+        /// Information about the observer
+        /// </summary>
         public IObserverAgency ObserverAgency { get; set; }
+
 
         /// <summary>
         /// The date and time of the first observation
         /// </summary>
         public DateTime FirstObservation { get; set; }
 
+
+        /// <summary>
+        /// The date and time of the first observation
+        /// </summary>
+        public DateTime LastObservation { get; set; }
+
+
         /// <summary>
         /// The approximate first position
         /// </summary>
         public IPosition ApproximatePosition { get; set; }
+
 
         /// <summary>
         /// The approximate antenna delta (offset)
         /// </summary>
         public IPosition AntennaDelta { get; set; }
 
+
         /// <summary>
         /// A list of signal types
         /// </summary>
         public int[] SignalTypes { get; set; }
 
+
         /// <summary>
         /// Information from the rinex file
         /// </summary>
         public IRinexHeader RinexHeader { get; set;  }
+
 
         /// <summary>
         /// A string representing the marker

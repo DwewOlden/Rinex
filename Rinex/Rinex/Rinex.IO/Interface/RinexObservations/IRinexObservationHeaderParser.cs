@@ -12,7 +12,7 @@ namespace Rinex.IO.Interface
     {
         int[] ParseSignalTypes(string pLine);
 
-        DateTime ParseTimeOfFirstObservation(string pLine);
+        DateTime ParseObservationDateAndTime(string pLine);
 
         IPosition ParseApproximatePosistion(string pLine);
 

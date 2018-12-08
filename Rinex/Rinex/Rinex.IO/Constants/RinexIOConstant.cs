@@ -33,5 +33,7 @@ namespace Rinex.IO.Constants
         public const string EndOfHeader = "END OF HEADER";
 
         public const string TimeOfFirstObservation = "TIME OF FIRST OBS";
+
+        public const string TimeOfLastObservation = "TIME OF LAST OBS";
     }
 }

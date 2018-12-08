@@ -171,7 +171,21 @@ namespace Rinex.IO.Support
         /// </summary>
         /// <param name="pLine">The line to be parsed</param>
         /// <returns>A time object populated with the information parsed from the observation header</returns>
-        public DateTime ParseTimeOfFirstObservation(string pLine)
+        public DateTime ParseObservationDateAndTime(string pLine)
+        {
+            var dateTime = GetDateTimeFromString(pLine);
+            if (!dateTime.HasValue)
+                throw new ArgumentOutOfRangeException("firstdate", "unable to extract the date time from the string");
+
+            return dateTime.Value;
+        }
+
+        /// <summary>
+        /// Extracts the apprximate time of the last observation
+        /// </summary>
+        /// <param name="pLine">The line to be parsed</param>
+        /// <returns>A time object populated with the information parsed from the observation header</returns>
+        public DateTime ParseTimeOfLastObservation(string pLine)
         {
             var dateTime = GetDateTimeFromString(pLine);
             if (!dateTime.HasValue)
