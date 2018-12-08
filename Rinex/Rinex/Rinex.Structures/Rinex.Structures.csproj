@@ -53,6 +53,8 @@
     <Compile Include="Interfaces\IPosition.cs" />
     <Compile Include="Interfaces\IProgramHeader.cs" />
     <Compile Include="Interfaces\IRinexHeader.cs" />
+    <Compile Include="Interfaces\ObservationEpochs\IObservationEpochHeader.cs" />
+    <Compile Include="ObservationEpochs\ObservationEpoch.cs" />
     <Compile Include="ObserverAgency.cs" />
     <Compile Include="ProgramHeader.cs" />
     <Compile Include="RinexHeader.cs" />
@@ -60,5 +62,6 @@
     <Compile Include="Position.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

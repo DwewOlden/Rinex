@@ -1,6 +1,7 @@
 ﻿using Rinex.IO.Interface;
 using Rinex.IO.Interface.RinexObservations;
 using Rinex.IO.Support;
+using Rinex.Support.Helpers;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -15,7 +16,7 @@ namespace Rinex.Test.Console
         {
             string observationFilename = "c:\\temp\\Rinex\\Test\\aTest.97o";
 
-            IRinexFileObservationReader reader = new Rinex.IO.Implementions.RinexObservationReader(new FileSupport());
+            IRinexFileObservationReader reader = new Rinex.IO.Implementions.RinexObservationReader(new FileSupport(),new DateTimeFunctions());
             reader.Filename = observationFilename;
             reader.ReadFile();
 

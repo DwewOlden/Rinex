@@ -4,6 +4,8 @@ using Rinex.IO.Interface.RinexObservations;
 using Rinex.IO.Support;
 using Rinex.Structures;
 using Rinex.Structures.Interfaces;
+using Rinex.Structures.Interfaces.ObservationEpochs;
+using Rinex.Support.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -18,6 +20,12 @@ namespace Rinex.IO.Implementions
     /// </summary>
     public class RinexObservationReader : IRinexFileObservationReader
     {
+        /// <summary>
+        /// An instance of the date time functions
+        /// </summary>
+        IDateTimeFunctions mDateTimeFunctions;
+
+
         /// <summary>
         /// The name of the file containing the observation information
         /// </summary>
@@ -37,9 +45,10 @@ namespace Rinex.IO.Implementions
         /// This should be considered the default constructor for the rinex reader
         /// </summary>
         /// <param name="pFilename">The name of the file</param>
-        public RinexObservationReader(IFileSupport pFileSupport)
+        public RinexObservationReader(IFileSupport pFileSupport,IDateTimeFunctions pDateTimeFunctions)
         {
             mFileSupport_ = pFileSupport;
+            mDateTimeFunctions = pDateTimeFunctions;
             mObservationHeaderParser = new RinexObservationHeaderParser();
         }
 
@@ -55,8 +64,51 @@ namespace Rinex.IO.Implementions
 
             var header_ = ReadObservationFileHeader();
 
+            var body_ = ReaderObservationBodies();
+
 
             return true;
+        }
+
+        /// <summary>
+        /// Reads the observation epoch records
+        /// </summary>
+        /// <returns></returns>
+        private object ReaderObservationBodies()
+        {
+            string line = mFileSupport_.ReadLine();
+            while (line != null)
+            {
+                var epochHeader = ProcessEpochHeader(line);
+                
+                line = mFileSupport_.ReadLine();
+            }
+
+            return null;
+
+        }
+
+        /// <summary>
+        /// Extracts information from the epoch header
+        /// </summary>
+        /// <param name="line">A string containing the epoch header</param>
+        /// <returns>A populated epoch observation header</returns>
+        private IObservationEpochHeader ProcessEpochHeader(string line)
+        {
+            if (string.IsNullOrEmpty(line))
+                return null;
+
+           // DateTime dateTime = 
+
+
+
+
+            return null;
+
+
+
+
+
         }
 
 
@@ -75,7 +127,7 @@ namespace Rinex.IO.Implementions
                 if (line.Contains(RinexIOConstant.EndOfHeader))
                     break;
 
-                ParseLine(line, ref lHeader_);
+                ParseHeaderLine(line, ref lHeader_);
 
                 line = mFileSupport_.ReadLine();
             }
@@ -90,7 +142,7 @@ namespace Rinex.IO.Implementions
         /// </summary>
         /// <param name="line">A string from the header</param>
         /// <param name="observationHeader">The observation header</param>
-        private void ParseLine(string line, ref IRinexObservationHeader observationHeader)
+        private void ParseHeaderLine(string line, ref IRinexObservationHeader observationHeader)
         {
             if (line.Contains(RinexIOConstant.AntennaDelta))
                 observationHeader.AntennaDelta = mObservationHeaderParser.ParseAntennaDelta(line);
