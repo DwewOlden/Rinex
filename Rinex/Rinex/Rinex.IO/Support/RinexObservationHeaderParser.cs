@@ -43,7 +43,7 @@ namespace Rinex.IO.Support
         {
             string p1 = pLine.Substring(0, 14);
             string p2 = pLine.Substring(14, 14);
-            string p3 = pLine.Substring(28, 42);
+            string p3 = pLine.Substring(28, 14);
 
             Double.TryParse(p1.Trim(), out double d1);
             Double.TryParse(p2.Trim(), out double d2);
@@ -171,17 +171,47 @@ namespace Rinex.IO.Support
         /// </summary>
         /// <param name="pLine">The line to be parsed</param>
         /// <returns>A time object populated with the information parsed from the observation header</returns>
-        public IGPSTime ParseTimeOfFirstObservation(string pLine)
+        public DateTime ParseTimeOfFirstObservation(string pLine)
         {
-            string lLine = pLine.Substring(0, 42);
-
-            while (lLine.Contains("  "))
-                lLine = lLine.Replace("  ", " ");
-
-            if (DateTime.TryParse(lLine, out DateTime d))
-                return new GPSTime(d);
-            else
+            var dateTime = GetDateTimeFromString(pLine);
+            if (!dateTime.HasValue)
                 throw new ArgumentOutOfRangeException("firstdate", "unable to extract the date time from the string");
+
+            return dateTime.Value;
+        }
+
+        /// <summary>
+        /// Converts a string into a date time
+        /// </summary>
+        /// <param name="pLine">A line containing a date time </param>
+        /// <returns>A date time extracted from the passed string</returns>
+        private DateTime? GetDateTimeFromString(string pLine)
+        {
+            try
+            {
+                // Get the data from the string
+                string sYear = pLine.Substring(0, 6);
+                string sMonth = pLine.Substring(6, 6);
+                string sDay = pLine.Substring(12, 6);
+                string sHour = pLine.Substring(18, 6);
+                string sMinute = pLine.Substring(24, 6);
+                string sSeconds = pLine.Substring(30, 13);
+
+                // Convert to the correct (specification) formats
+                int iYear = Convert.ToInt32(sYear);
+                int iMonth = Convert.ToInt32(sMonth);
+                int iDay = Convert.ToInt32(sDay);
+                int iHour = Convert.ToInt32(sHour);
+                int iMinute = Convert.ToInt32(sMinute);
+                double dSeconds = Convert.ToDouble(sSeconds);
+
+                // Convert to a date time
+                return new DateTime(iYear, iMonth, iDay, iHour, iMonth, (int)dSeconds);
+
+            } catch (Exception ex)
+            {
+                return null;
+            }
         }
 
         IRinexObservationHeader IRinexObservationHeaderParser.ParseObservationHeader(string pLine)

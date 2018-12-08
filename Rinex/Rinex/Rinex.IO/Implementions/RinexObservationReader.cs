@@ -53,6 +53,9 @@ namespace Rinex.IO.Implementions
             if (!FileIsValid())
                 throw new ArgumentException("filename", "there is an issue with file, check it exists at specified path");
 
+            var header_ = ReadObservationFileHeader();
+
+
             return true;
         }
 
@@ -61,17 +64,16 @@ namespace Rinex.IO.Implementions
         /// Opens the file and reads the header. The file will be left open ready for the 
         /// observations to be read
         /// </summary>
-        /// <param name="pFilename">The name of the file</param>
         /// <returns>True if the file could be read</returns>
-        public IRinexObservationHeader ReadObservationFileHeader(string pFilename)
+        private IRinexObservationHeader ReadObservationFileHeader()
         {
             IRinexObservationHeader lHeader_ = new ObservationHeader();
 
-            string line = string.Empty;
+            string line = mFileSupport_.ReadLine();
             while (line != null)
             {
                 if (line.Contains(RinexIOConstant.EndOfHeader))
-                    continue;
+                    break;
 
                 ParseLine(line, ref lHeader_);
 
@@ -107,6 +109,9 @@ namespace Rinex.IO.Implementions
 
             if (line.Contains(RinexIOConstant.RinexVersion))
                 observationHeader.RinexHeader = mObservationHeaderParser.ParseHeaderInformation(line);
+
+            if (line.Contains(RinexIOConstant.TimeOfFirstObservation))
+                observationHeader.FirstObservation = mObservationHeaderParser.ParseTimeOfFirstObservation(line);
         }
 
         /// <summary>
