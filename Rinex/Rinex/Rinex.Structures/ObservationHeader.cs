@@ -46,6 +46,11 @@ namespace Rinex.Structures
 
 
         /// <summary>
+        /// The number of singal types in the file.
+        /// </summary>
+        public int SignalTypeCount { get; set; }
+
+        /// <summary>
         /// A list of signal types
         /// </summary>
         public int[] SignalTypes { get; set; }

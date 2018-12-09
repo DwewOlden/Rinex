@@ -42,6 +42,11 @@ namespace Rinex.IO.Implementions
         private IRinexObservationHeaderParser mObservationHeaderParser;
 
         /// <summary>
+        /// Stores the data read from the Rinex observartion header
+        /// </summary>
+        public IRinexObservationHeader Header { get; set; }
+
+        /// <summary>
         /// This should be considered the default constructor for the rinex reader
         /// </summary>
         /// <param name="pFilename">The name of the file</param>
@@ -62,7 +67,7 @@ namespace Rinex.IO.Implementions
             if (!FileIsValid())
                 throw new ArgumentException("filename", "there is an issue with file, check it exists at specified path");
 
-            var header_ = ReadObservationFileHeader();
+            Header = ReadObservationFileHeader();
 
             var body_ = ReaderObservationBodies();
 
@@ -80,11 +85,45 @@ namespace Rinex.IO.Implementions
             while (line != null)
             {
                 var epochHeader = ProcessEpochHeader(line);
+                line = mFileSupport_.ReadLine();
+
+                IEnumerable<double> data = ProcessEpochBody(line);
                 
                 line = mFileSupport_.ReadLine();
             }
 
             return null;
+        }
+
+        /// <summary>
+        /// Process the epoch body
+        /// </summary>
+        /// <param name="line">The line being processed</param>
+        /// <returns>A collection of values,</returns>
+        private IEnumerable<double> ProcessEpochBody(string line)
+        {
+            int index = 0;
+
+            List<double> v = new List<double>();
+            for (int i=0;i<5;i++)
+            {
+                int delta = index * 16;
+                int max = Math.Min(line.Length - delta, 16);
+
+                string p = line.Substring(index * 16, max);
+                if (!string.IsNullOrEmpty(p))
+                {
+                    string sValue = p.Substring(0, 14);
+                    double dValue = Convert.ToDouble(sValue);
+                    v.Add(dValue);
+                }
+
+                index++;
+            }
+
+            return v;
+
+
         }
 
         /// <summary>
@@ -101,6 +140,7 @@ namespace Rinex.IO.Implementions
             if (!epochTime.HasValue)
                 throw new ArgumentException("line", "unable to extract the epoch header from the line");
 
+            
             
 
 
@@ -164,7 +204,11 @@ namespace Rinex.IO.Implementions
                 observationHeader.Marker = mObservationHeaderParser.ParseMarker(line);
 
             if (line.Contains(RinexIOConstant.ObserverationTypes))
-                observationHeader.SignalTypes = mObservationHeaderParser.ParseSignalTypes(line);
+            {
+                int Count = 0;
+                observationHeader.SignalTypes = mObservationHeaderParser.ParseSignalTypes(line,out Count);
+                observationHeader.SignalTypeCount = Count;
+            }
 
             if (line.Contains(RinexIOConstant.ProgramInformation))
                 observationHeader.ProgramHeader = mObservationHeaderParser.ParseProgramHeader(line);

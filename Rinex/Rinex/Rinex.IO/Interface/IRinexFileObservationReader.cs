@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Rinex.Structures.Interfaces;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -22,5 +23,10 @@ namespace Rinex.IO.Interface.RinexObservations
         /// <param name="Filename">The name of the file</param>
         /// <returns>True if the observation file could be read correctly.</returns>
         bool ReadFile();
+
+        /// <summary>
+        /// Stores the data read from the Rinex observartion header
+        /// </summary>
+        IRinexObservationHeader Header { get; set; }
     }
 }

@@ -10,7 +10,7 @@ namespace Rinex.IO.Interface
 {
     public interface IRinexObservationHeaderParser
     {
-        int[] ParseSignalTypes(string pLine);
+        int[] ParseSignalTypes(string pLine,out int SignalCount);
 
         DateTime ParseObservationDateAndTime(string pLine);
 

@@ -121,12 +121,14 @@ namespace Rinex.IO.Support
         /// </summary>
         /// <param name="pLine">The line to be parsed</param>
         /// <returns>An array containing the types of signal being observation</returns>
-        public int[] ParseSignalTypes(string pLine)
+        public int[] ParseSignalTypes(string pLine,out int Count)
         {
             string pTypesNumber = pLine.Substring(0, 6).Trim();
 
             if (!Int32.TryParse(pTypesNumber, out int NumberOfTypes))
                 throw new ArgumentOutOfRangeException("numtypes", "unable to determine the number of types");
+
+            Count = NumberOfTypes;
 
             int[] types = new int[NumberOfTypes];
 

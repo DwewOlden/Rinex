@@ -7,7 +7,8 @@ using System.Threading.Tasks;
 namespace Rinex.Structures.Interfaces
 {
     public interface IRinexObservationHeader
-    {
+    { 
+
         DateTime FirstObservation { get; set; }
 
         DateTime LastObservation { get; set; }
@@ -19,6 +20,8 @@ namespace Rinex.Structures.Interfaces
         IProgramHeader ProgramHeader { get; set; }
 
         IObserverAgency ObserverAgency { get; set; }
+
+        int SignalTypeCount { get; set; }
 
         int[] SignalTypes { get; set; }
 

@@ -91,10 +91,11 @@ namespace Rinex.IO.Tests
         [Test]
         public void Test_Types_Parsing_1()
         {
+            int Count = 0;
             string line = "     7    L1    L2    C1    P1    P2    D1    D2            # / TYPES OF OBSERV";
 
             Rinex.IO.Interface.IRinexObservationHeaderParser p = new Rinex.IO.Support.RinexObservationHeaderParser();
-            int[] output = p.ParseSignalTypes(line);
+            int[] output = p.ParseSignalTypes(line,out Count);
 
             Assert.AreEqual(7, output.Length);
             Assert.AreEqual(4, output[0]);
@@ -102,20 +103,23 @@ namespace Rinex.IO.Tests
             Assert.AreEqual(0, output[2]);
             Assert.AreEqual(2, output[3]);
             Assert.AreEqual(3, output[4]);
+            Assert.AreEqual(3, Count);
         }
 
         [Test]
         public void Test_Types_Parsing_2()
         {
+            int Count = 0;
             string line = "     3    C1    L1    P1                                    # / TYPES OF OBSERV";
 
             Rinex.IO.Interface.IRinexObservationHeaderParser p = new Rinex.IO.Support.RinexObservationHeaderParser();
-            int[] output = p.ParseSignalTypes(line);
+            int[] output = p.ParseSignalTypes(line,out Count);
 
             Assert.AreEqual(3, output.Length);
             Assert.AreEqual(0, output[0]);
             Assert.AreEqual(4, output[1]);
             Assert.AreEqual(2, output[2]);
+            Assert.AreEqual(3, Count);
         }
 
         
