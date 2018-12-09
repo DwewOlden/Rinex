@@ -17,6 +17,21 @@ namespace Rinex.IO.Tests
     {
 
         [Test]
+        public void Test_Epoch_Header_Prn_Parser()
+        {
+            string line = " 97 10 24 14  2 45.0000000  0  7 17 27 26  2 10 13 19                0.000044137";
+            int Count = 7;
+
+            IRinexObservationEpochHeaderParser p = new RinexObservationEpochHeaderParser();
+            var output = p.ParseSatellitePrns(line,Count);
+
+            IEnumerable<int> expected = new List<int> { 17, 27, 26, 2, 10, 13, 19 };
+            
+            CollectionAssert.AreEquivalent(expected, output);
+        }
+
+
+        [Test]
         public void Test_Epoch_Header_Flag_Parser()
         {
             string line = " 97 10 24 14  2 45.0000000  0  7 17 27 26  2 10 13 19                0.000044137";

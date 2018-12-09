@@ -24,5 +24,12 @@ namespace Rinex.IO.Interface.RinexObservations
         /// <param name="line">A line of text represeting an epoch header</param>
         /// <returns>The number of satellites</returns>
         int ParseSatelliteCount(string line);
+
+        /// <summary>
+        /// Gets the prns for each of the satellites in the header
+        /// </summary>
+        /// <param name="Count">The numer of satellites</param>
+        /// <returns>A collection of Satellite Ids</returns>
+        IEnumerable<int> ParseSatellitePrns(string line, int Count);
     }
 }
