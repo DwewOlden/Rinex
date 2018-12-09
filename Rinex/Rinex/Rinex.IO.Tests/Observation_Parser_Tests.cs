@@ -28,6 +28,18 @@ namespace Rinex.IO.Tests
             Assert.AreEqual(expected, output);
         }
 
+        [Test]
+        public void Test_Epoch_Header_SatCount_Parser()
+        {
+            string line = " 97 10 24 14  2 45.0000000  0  7 17 27 26  2 10 13 19                0.000044137";
+
+            IRinexObservationEpochHeaderParser p = new RinexObservationEpochHeaderParser();
+            int output = p.ParseSatelliteCount(line);
+            int expected = 7;
+
+            Assert.AreEqual(expected, output);
+        }
+
 
         [Test]
         public void Test_Epoch_Header_Date_Parse()

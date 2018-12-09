@@ -23,7 +23,19 @@ namespace Rinex.IO.Support
 
             int flag = Convert.ToInt32(sFlag);
             return flag;
+        }
 
+        /// <summary>
+        /// Extracts the number of satellites from the line
+        /// </summary>
+        /// <param name="line">A line of text represeting an epoch header</param>
+        /// <returns>The number of satellites</returns>
+        public int ParseSatelliteCount(string line)
+        {
+            string sCount = line.Substring(29, 3);
+
+            int satCount = Convert.ToInt32(sCount);
+            return satCount;
         }
     }
 }
