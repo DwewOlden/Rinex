@@ -85,7 +85,6 @@ namespace Rinex.IO.Implementions
             }
 
             return null;
-
         }
 
         /// <summary>
@@ -96,9 +95,20 @@ namespace Rinex.IO.Implementions
         private IObservationEpochHeader ProcessEpochHeader(string line)
         {
             if (string.IsNullOrEmpty(line))
-                return null;
+                throw new ArgumentException("line", "the line was empty, was expecting a epoch header");
 
-           // DateTime dateTime = 
+            DateTime? epochTime = mDateTimeFunctions.ExtractEpochDateAndTime(line);
+            if (!epochTime.HasValue)
+                throw new ArgumentException("line", "unable to extract the epoch header from the line");
+
+            
+
+
+
+
+
+
+
 
 
 

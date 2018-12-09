@@ -18,5 +18,13 @@ namespace Rinex.Support.Interfaces
         /// <returns>A four digit version fo the passed string</returns>
         int PadDate(string year);
 
+        /// <summary>
+        /// Extracts the epoch date and time from the file 
+        /// </summary>
+        /// <param name="line">A line from the rinex observaiton file, the first line
+        /// from the epoch.</param>
+        /// <returns>A date time object</returns>
+        DateTime? ExtractEpochDateAndTime(string line);
+
     }
 }

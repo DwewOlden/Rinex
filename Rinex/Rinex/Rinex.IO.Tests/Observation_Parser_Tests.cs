@@ -1,5 +1,9 @@
 ﻿using NUnit.Framework;
+using Rinex.IO.Interface.RinexObservations;
+using Rinex.IO.Support;
 using Rinex.Structures.Interfaces;
+using Rinex.Support.Helpers;
+using Rinex.Support.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,6 +15,35 @@ namespace Rinex.IO.Tests
     [TestFixture]
     public class Observation_Parser_Tests
     {
+
+        [Test]
+        public void Test_Epoch_Header_Flag_Parser()
+        {
+            string line = " 97 10 24 14  2 45.0000000  0  7 17 27 26  2 10 13 19                0.000044137";
+
+            IRinexObservationEpochHeaderParser p = new RinexObservationEpochHeaderParser();
+            int output = p.ExtractEpochFlag(line);
+            int expected = 0;
+
+            Assert.AreEqual(expected, output);
+        }
+
+
+        [Test]
+        public void Test_Epoch_Header_Date_Parse()
+        {
+            string line = " 97 10 24 14  2 45.0000000  0  7 17 27 26  2 10 13 19                0.000044137";
+
+            IDateTimeFunctions p = new DateTimeFunctions();
+            DateTime? output = p.ExtractEpochDateAndTime(line);
+
+            DateTime expected = new DateTime(1997, 10, 24, 14, 2, 45);
+
+            Assert.AreEqual(true, output.HasValue);
+            Assert.AreEqual(expected, output);
+        }
+
+
         [Test]
         public void Test_Program_Header_Line()
         {

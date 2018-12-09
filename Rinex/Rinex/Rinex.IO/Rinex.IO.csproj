@@ -44,11 +44,13 @@
     <Compile Include="Implementions\RinexObservationReader.cs" />
     <Compile Include="Interface\IFileSupport.cs" />
     <Compile Include="Interface\IRinexFileObservationReader.cs" />
+    <Compile Include="Interface\RinexObservations\IRinexObservationEpochHeaderParser.cs" />
     <Compile Include="Interface\RinexObservations\IRinexObservationFileContents.cs" />
     <Compile Include="Interface\RinexObservations\IRinexObservationHeaderParser.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="RinexString.cs" />
     <Compile Include="Support\FileSupport.cs" />
+    <Compile Include="Support\RinexObservationEpochHeaderParser.cs" />
     <Compile Include="Support\RinexObservationHeaderParser.cs" />
   </ItemGroup>
   <ItemGroup>
